@@ -18,9 +18,9 @@ Test it out locally:
 git clone git@github.com:wework/monarch.git
 ```
 
-To create and update the migration file, simply run the node script `edit_file.js` with one argument:
+To create and update the migration file, simply run the node script `migrate.js` with one argument:
 ```
-node edit_file.js <content type>
+node migrate.js <content type>
 ```
 
 Re-open the file, and see it has been updated.
