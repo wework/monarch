@@ -10,6 +10,8 @@ const createFields = (component) => {
     .required(true)`;
     if(each.validations) val += `
     .validations(${JSON.stringify(each.validations)})`;
+    if(each.linkType) val += `
+    .linkType('${each.linkType}')`;
     val += `
   `;
   })
@@ -22,6 +24,10 @@ module.exports.up = function(migration) {
   ${component.content_type}
     .name('${component.name}')
     .description('${component.description}')
+  ${component.content_type}
+    .createField('contentTitle')
+    .name('Content Title')
+    .type('Symbol')
   ${createFields(component)}
 
 module.exports.down = migration => migration.deleteContentType(${component.content_type});

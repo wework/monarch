@@ -1,20 +1,42 @@
 
 module.exports.up = function(migration) {
-  const author = migration.createContentType('author')
-  author
-    .name('Author')
-    .description('Author of a blog post')
-  author
-    .createField('fullName')
-    .name('Full Name')
+  const component = migration.createContentType('component')
+  component
+    .name('Component')
+    .description('Component to test')
+  component
+    .createField('contentTitle')
+    .name('Content Title')
+    .type('Symbol')
+  component
+    .createField('shortText')
+    .name('Short Text')
     .type('Symbol')
     .required(true)
-  author
-    .createField('twitter')
-    .name('Twitter')
+  component
+    .createField('shortTextWithValidations')
+    .name('Short Text with Validations')
     .type('Symbol')
-    .required(true)
     .validations([{"unique":true},{"regexp":{"pattern":"^\\w[\\w.-]*@([\\w-]+\\.)+[\\w-]+$"}}])
+  component
+    .createField('decimalNumber')
+    .name('Decimal Number')
+    .type('Number')
+  component
+    .createField('boolean')
+    .name('Boolean Value')
+    .type('Boolean')
+  component
+    .createField('image')
+    .name('Image')
+    .type('Link')
+    .linkType('Asset')
+  component
+    .createField('reference')
+    .name('Reference')
+    .type('Link')
+    .validations([{"linkContentType":["someReference"]}])
+    .linkType('Entry')
   
 
-module.exports.down = migration => migration.deleteContentType(author);
+module.exports.down = migration => migration.deleteContentType(component);
