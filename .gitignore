@@ -1,0 +1,33 @@
+node_modules
+test-output
+.DS_Store
+*.log
+*.orig
+build
+.env
+.tmp
+.nyc_output
+.eslintcache
+npm-debug.log*
+src/common/messages/extracted
+src/common/messages/en-US.json
+dump.rdb
+.tags
+.tags_sorted_by_file
+.vscode
+.idea
+
+# Docker temp directory
+docker/
+
+# Storybook static site
+storybook-static/
+
+junit.xml
+
+development.yml
+junit.xml
+
+.vs
+
+lighthouse.json
