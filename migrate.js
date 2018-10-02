@@ -41,11 +41,11 @@ module.exports.up = function(migration) {
 module.exports.down = migration => migration.deleteContentType('${component.content_type}');
 `;
 
-import fs from 'fs';
-import { exec } from 'child_process';
+var fs = require ('fs');
+var { exec } = require ('child_process');
 
 // TODO: this should be able to be passed in or this will be grabbed in Phase 2
-import component from './data.js';
+var component = require ('./dummy_data');
 
 exec(`ctf-migrate create ${process.argv[2]} -c ${process.argv[2]}`, async (err, stdout, stderr) => {
   if (err) {
