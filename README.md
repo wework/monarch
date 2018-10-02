@@ -23,7 +23,7 @@ To create and update the migration file, simply run the node script `migrate.js`
 node migrate.js <content type>
 ```
 
-Re-open the file, and see it has been updated.
+Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run.
 
 Run the migration in your application:
 ```
