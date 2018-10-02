@@ -1,27 +1,30 @@
-// contentful-migrate (up & down)
-// TODO: use init function here
-// TODO: support contentful-cli (non up & down)
-
 const createFields = (component) => {
-  let val = ``;
-  component.fields.forEach(each => {
-    val += `${component.content_type}
-    .createField('${each.id}')
-    .name('${each.name}')
-    .type('${each.type}')`
+  if(!component.fields) {
+    console.log('No fields added')
+    return
+  }
 
-    if(each.required) val += `
+  let val = ``;
+  component.fields.forEach(field => {
+    val += `${component.content_type}
+    .createField('${field.id}')
+    .name('${field.name}')
+    .type('${field.type}')`
+
+    if(field.required) val += `
     .required(true)`;
-    if(each.validations) val += `
-    .validations(${JSON.stringify(each.validations)})`;
-    if(each.linkType) val += `
-    .linkType('${each.linkType}')`;
+    if(field.validations) val += `
+    .validations(${JSON.stringify(field.validations)})`;
+    if(field.linkType) val += `
+    .linkType('${field.linkType}')`;
     val += `
   `;
   })
   return val;
 };
 
+// contentful-migrate (up & down)
+// TODO: support contentful-cli (non up & down)
 const createMigration = component => `
 module.exports.up = function(migration) {
   const ${component.content_type} = migration.createContentType('${component.content_type}')
@@ -38,13 +41,30 @@ module.exports.up = function(migration) {
 module.exports.down = migration => migration.deleteContentType('${component.content_type}');
 `;
 
-var fs = require('fs');
-var component = require('./data.js');
+import fs from 'fs';
+import { exec } from 'child_process';
 
-fs.writeFile(`./migrations/${process.argv[2]}/${process.argv[3]}`, createMigration(component), function(err) {
+// TODO: this should be able to be passed in or this will be grabbed in Phase 2
+import component from './data.js';
+
+exec(`ctf-migrate create ${process.argv[2]} -c ${process.argv[2]}`, async (err, stdout, stderr) => {
+  if (err) {
+    // node couldn't execute the command
+    console.log('ctf-migrate error:', err);
+    return;
+  }
+
+  // Success!
+  console.log(stdout);
+
+  const fileName = stdout.split('/')[stdout.split('/').length - 1].trim();
+
+  fs.writeFile(`./migrations/${process.argv[2]}/${fileName}`, createMigration(component), function(err) {
     if(err) {
-        return console.log(err);
+        return console.log('fs error:', err);
     }
 
-    console.log("The file was saved!");
+    console.log("The file was updated!");
+  });
 });
+

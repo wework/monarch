@@ -18,14 +18,9 @@ Test it out locally:
 git clone git@github.com:wework/monarch.git
 ```
 
-From the command line, create the directory and migration file (ex. `20181002202324-myReference.js`):
+To create and update the migration file, simply run the node script `edit_file.js` with one argument:
 ```
-ctf-migrate create <name> -c <content type>
-```
-
-To edit that file, run the node script `edit_file.js` with two arguments:
-```
-node edit_file.js <name> <file name created from ctf-migrate create>
+node edit_file.js <content type>
 ```
 
 Re-open the file, and see it has been updated.
