@@ -40,7 +40,7 @@ module.exports = {
       type: 'Link',
       linkType: 'Entry',
       validations: [
-        { linkContentType: [ 'someReference' ] }
+        { linkContentType: [ 'myReference', 'faqs' ] }
       ]
     },
   ]

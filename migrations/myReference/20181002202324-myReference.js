@@ -14,5 +14,6 @@ module.exports.up = function(migration) {
     .type('Symbol')
     .required(true)
   
+}
 
-module.exports.down = migration => migration.deleteContentType(myReference);
+module.exports.down = migration => migration.deleteContentType('myReference');

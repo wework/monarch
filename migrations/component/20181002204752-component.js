@@ -35,8 +35,9 @@ module.exports.up = function(migration) {
     .createField('reference')
     .name('Reference')
     .type('Link')
-    .validations([{"linkContentType":["someReference"]}])
+    .validations([{"linkContentType":["myReference","faqs"]}])
     .linkType('Entry')
   
+}
 
-module.exports.down = migration => migration.deleteContentType(component);
+module.exports.down = migration => migration.deleteContentType('component');

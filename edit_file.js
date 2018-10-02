@@ -1,3 +1,7 @@
+// contentful-migrate (up & down)
+// TODO: use init function here
+// TODO: support contentful-cli (non up & down)
+
 const createFields = (component) => {
   let val = ``;
   component.fields.forEach(each => {
@@ -29,14 +33,15 @@ module.exports.up = function(migration) {
     .name('Content Title')
     .type('Symbol')
   ${createFields(component)}
+}
 
-module.exports.down = migration => migration.deleteContentType(${component.content_type});
+module.exports.down = migration => migration.deleteContentType('${component.content_type}');
 `;
 
 var fs = require('fs');
 var component = require('./data.js');
 
-fs.writeFile(`./migrations/${process.argv[2]}`, createMigration(component), function(err) {
+fs.writeFile(`./migrations/${process.argv[2]}/${process.argv[3]}`, createMigration(component), function(err) {
     if(err) {
         return console.log(err);
     }
