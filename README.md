@@ -1,7 +1,7 @@
 # monarch
 Welcome to Monarch! We offer a node script to allow you to dynamically create Contentful migration files within your application.
 
-Currently supports contentful content types:
+Currently supports [contentful content types](https://www.contentful.com/developers/docs/concepts/data-model/):
 - Symbol (short text)
 - Link (references or assets)
 - Number (decimal number)
@@ -13,7 +13,7 @@ Also supports:
 - linkType
 
 We are not quite ready to be used in production, but in the meantime...
-Test it out locally:
+Test it out locally (be sure to `yarn` or `npm install` before doing anything):
 ```
 git clone git@github.com:wework/monarch.git
 ```
@@ -31,7 +31,5 @@ ctf-migrate up <file name> -t <Contentful access-key> -s <space id> -e <environm
 ```
 
 The future:
-- Migration directory will live in your app's code base
 - export custom validators
-  - Entry linkType validator
-- Tests around migrate.js
+  - Entry linkType validator (based on child components component)
