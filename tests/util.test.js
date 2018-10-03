@@ -1,4 +1,4 @@
-const { createMigration, createFields, createField } = require('./index.js');
+const { createMigration, createFields, createField } = require('../util/');
 
 const dummyField = {
   id: 'dummy',
