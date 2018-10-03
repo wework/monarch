@@ -1,5 +1,5 @@
 module.exports = {
-  content_type: 'component',
+  content_type: 'newName',
   name: 'Component',
   description: 'Component to test',
   fields: [

@@ -20,7 +20,7 @@ git clone git@github.com:wework/monarch.git
 
 To create and update the migration file, simply run the node script `migrate.js` with one argument:
 ```
-node migrate.js <content type>
+node migrate.js <content type> <data file name>
 ```
 
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run.
@@ -32,3 +32,6 @@ ctf-migrate up <file name> -t <Contentful access-key> -s <space id> -e <environm
 
 The future:
 - Migration directory will live in your app's code base
+- export custom validators
+  - Entry linkType validator
+- Tests around migrate.js
