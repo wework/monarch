@@ -1,4 +1,11 @@
 {
+  "name": "@wework/monarch",
+  "version": "1.0.0-alpha.0",
+  "description": "service for dynamically generating Contentful Migrations",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeConnect/www-quincy.git"
+  },
   "scripts": {
     "test": "jest"
   },

@@ -1,5 +1,5 @@
 module.exports = {
-  content_type: 'newName',
+  content_type: 'component20181011',
   name: 'Component',
   description: 'Component to test',
   fields: [
@@ -40,8 +40,20 @@ module.exports = {
       type: 'Link',
       linkType: 'Entry',
       validations: [
-        { linkContentType: [ 'myReference', 'faqs' ] }
+        { linkContentType: [ 'faqs' ] }
       ]
     },
+    {
+      id: 'referenceMany',
+      name: 'Reference',
+      type: 'Array',
+      items: {
+        type: 'Link',
+        linkType: 'Entry',
+        validations: [
+          { linkContentType: [ 'faqs' ] },
+        ],
+      }
+    }
   ]
 }

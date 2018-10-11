@@ -31,6 +31,20 @@ describe('#createField', () => {
       `.createField('${dummyField.id}').name('${dummyField.name}').type('${type}').validations(${JSON.stringify(validations)}).linkType('${linkType}')`.replace(/\s/g, ''))
   })
 
+  test('Array field with items', () => {
+    const type = 'Array';
+    const items = {
+      type: 'Symbol',
+    };
+    expect(createField({...dummyField, type, items}).replace(/\s/g, '')).toBe(
+      `.createField('${dummyField.id}').name('${dummyField.name}').type('${type}').items(${JSON.stringify(items)})`.replace(/\s/g, ''))
+  })
+
+  test('Array field with no items', () => {
+    const type = 'Array';
+    expect(createField({...dummyField, type}).replace(/\s/g, '')).toBe(``)
+  })
+
   test('Asset field', () => {
     const type = 'Link';
     const linkType = 'Asset';
