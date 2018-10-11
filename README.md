@@ -1,16 +1,18 @@
 # monarch
 Welcome to Monarch! We offer a node script to allow you to dynamically create Contentful migration files within your application.
 
-Currently supports [contentful content types](https://www.contentful.com/developers/docs/concepts/data-model/):
+Currently supports [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field):
 - Symbol (short text)
 - Link (references or assets)
 - Number (decimal number)
 - Boolean
+- Array (needs `items` object as well)
 
 Also supports:
 - Validations array
 - Required
 - linkType
+- items (required, if `type` is `Array`)
 
 We are not quite ready to be used in production, but in the meantime...
 Test it out locally (be sure to `yarn` or `npm install` before doing anything):
