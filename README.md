@@ -27,7 +27,7 @@ node migrate.js <content type> <data file name>
 
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run.
 
-Run the migration in your application:
+Run the migration in your application (note: if you run them all, there is a risk that they won't be created in the right order, where references are created after parent components):
 ```
 ctf-migrate up <file name> -t <Contentful access-key> -s <space id> -e <environment id> -c <content type>
 ```

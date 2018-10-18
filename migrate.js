@@ -4,8 +4,8 @@ var fs = require ('fs');
 var path = require('path');
 var { exec } = require ('child_process');
 
-// TODO: this should be able to be passed in or this will be grabbed in Phase 2
 var component = require(path.resolve(__dirname, process.argv[3]));
+console.log('component', component)
 
 exec(`ctf-migrate create ${process.argv[2]} -c ${process.argv[2]}`, (err, stdout, stderr) => {
   if (err) {
@@ -16,6 +16,7 @@ exec(`ctf-migrate create ${process.argv[2]} -c ${process.argv[2]}`, (err, stdout
 
   // Success!
   console.log(stdout);
+  console.log('YAYY', component);
 
   const fileName = stdout.split('/')[stdout.split('/').length - 1].trim();
 

@@ -1,0 +1,1 @@
+module.exports = {"name":"CrossSellGroup","content_type":"CrossSellGroup","description":"","fields":[{"id":"headerText","name":"headerText","type":"Symbol"},{"id":"bodyText","name":"bodyText","type":"Symbol"},{"id":"centered","name":"centered","type":"Boolean"}]}
