@@ -20,7 +20,7 @@ Test it out locally (be sure to `yarn` or `npm install` before doing anything):
 git clone git@github.com:wework/monarch.git
 ```
 
-To create and update the migration file, simply run the node script `migrate.js` with one argument:
+To create and update the migration file, simply run the node script `migrate.js` with two arguments:
 ```
 node migrate.js <content type> <data file name>
 ```
