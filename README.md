@@ -25,6 +25,9 @@ To create and update the migration file, simply run the node script `migrate.js`
 node migrate.js <content type> <data file name>
 ```
 
+`<data file name>` is sturctured like [this](https://github.com/wework/monarch/blob/master/dummy_data/index.js)
+`<content type>` should match the `content_type` in the file
+
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run.
 
 Run the migration in your application:
