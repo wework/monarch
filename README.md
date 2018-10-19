@@ -60,5 +60,5 @@ Run the migrations in your application, using [`ctf-migrate`](https://www.npmjs.
 ```
 
 The future:
+- support other front-end frameworks
 - export custom validators
-  - Entry linkType validator (based on child components component)
