@@ -7,13 +7,18 @@
     "url": "git+https://github.com/WeConnect/www-quincy.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "migrate": "node migrate.js",
+    "parse": "node parseProps.js",
+    "parse:migrate": "node parseMigrate.js"
   },
   "dependencies": {
     "contentful-migrate": "^0.8.0",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "react": "16.5.2"
   },
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "react-docgen": "2.21.0"
   }
 }
