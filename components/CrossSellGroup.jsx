@@ -8,12 +8,12 @@ const CrossSellGroup = ({ headerText, bodyText, crossSellCards, centered, imageA
   );
 };
 
-// CrossSellGroup.defaultProps = {
-//   imageAspectRatio: {
-//     tiny: 7 / 5,
-//     md: 16 / 9,
-//   },
-// };
+CrossSellGroup.defaultProps = {
+  imageAspectRatio: {
+    tiny: 7 / 5,
+    md: 16 / 9,
+  },
+};
 
 CrossSellGroup.propTypes = {
   headerText: PropTypes.string,
@@ -22,15 +22,15 @@ CrossSellGroup.propTypes = {
   crossSellCards: PropTypes.arrayOf(
     PropTypes.instanceOf(CrossSellCard)
   ),
-  // __id: PropTypes.string,
-  /*
+  /** @ignore-content-prop */
+  __id: PropTypes.string,
+  /** @ignore-content-prop */
   imageAspectRatio: PropTypes.shape({
     tiny: PropTypes.number,
     sm: PropTypes.number,
     md: PropTypes.number,
     lg: PropTypes.number,
   }),
-  */
 };
 
 export default CrossSellGroup;
