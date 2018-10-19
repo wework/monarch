@@ -45,7 +45,7 @@ yarn parse:migrate <react component filename>
 
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run, name spaced with the timestamp of creation.
 
-Run the migrations in your application, using [`ctf-migrate`](https://www.npmjs.com/package/contentful-migrate#up). Example:
+Run the migrations in your application, using [`ctf-migrate`](https://www.npmjs.com/package/contentful-migrate#up). Example for running `up`, which creates the Contentful content model in your Contentful space:
 ```
   Usage: ctf-migrate up [filename] [options]
 
