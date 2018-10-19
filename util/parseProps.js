@@ -1,9 +1,9 @@
 const buildObject = (props, propName) => {
   const prop = props[propName];
-  console.log('buildObject', prop);
+
   const { type, required, description, name } = prop;
 
-  if(description.includes('@ignore-content-type')) {
+  if(description.includes('@ignore-content-prop')) {
     return null;
   }
 
@@ -17,12 +17,15 @@ const buildObject = (props, propName) => {
   if(typeOfProp === 'string') {
     field.type = 'Symbol';
   }
+
   if(typeOfProp === 'bool') {
     field.type = 'Boolean';
   }
+
   if(typeOfProp === 'number') {
     field.type = 'Number'
   }
+
   if(typeOfProp === 'instanceOf') {
     field = {
       ...field,
@@ -33,6 +36,7 @@ const buildObject = (props, propName) => {
       ],
     }
   }
+
   if((typeOfProp === 'object' || typeOfProp === 'shape') && description.includes('@asset')) {
     field = {
       ...field,
@@ -40,9 +44,11 @@ const buildObject = (props, propName) => {
       linkType: 'Asset',
     }
   }
+
   if(typeOfProp === 'arrayOf') {
     field.type = 'Array';
     field.items = {};
+
     if(type.value.name === 'instanceOf') {
       field.items = {
         type: 'Link',
@@ -52,12 +58,20 @@ const buildObject = (props, propName) => {
         ],
       }
     }
-    // TODO: what to do to support shape... do we create a new migration for these cases?
+
+    if((type.value.name === 'object' || type.value.name === 'shape') && description.includes('@asset')) {
+      field.items = {
+        type: 'Link',
+        linkType: 'Asset',
+      }
+    }
+
     if(type.value.name === 'shape') {
-      Object.keys(type.value.value).forEach(subPropName => {
-        let item = buildObject(type.value.value, subPropName);
-        field.items = item;
-      })
+      // TODO: what to do to support shape without description... do we create a new migration for these cases?
+      // Object.keys(type.value.value).forEach(subPropName => {
+      //   let item = buildObject(type.value.value, subPropName);
+      //   field.items = item;
+      // })
     }
   }
   return field;

@@ -14,7 +14,7 @@ CrossSellCard.propTypes = {
   image: PropTypes.object,
   url: PropTypes.string,
   linkText: PropTypes.string,
-  /** @ignore-content-type */
+  /** @ignore-content-prop */
   __id: PropTypes.string,
 };
 
