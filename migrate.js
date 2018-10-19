@@ -16,7 +16,6 @@ exec(`ctf-migrate create ${process.argv[2]} -c ${process.argv[2]}`, (err, stdout
 
   // Success!
   console.log(stdout);
-  console.log('YAYY', component);
 
   const fileName = stdout.split('/')[stdout.split('/').length - 1].trim();
 
