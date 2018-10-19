@@ -10,10 +10,12 @@ const CrossSellCard = ({ headerText, bodyText, crossSellCards, centered, imageAs
 CrossSellCard.propTypes = {
   title: PropTypes.string,
   copy: PropTypes.string,
+  /** @asset */
   image: PropTypes.object,
   url: PropTypes.string,
   linkText: PropTypes.string,
-  // __id: PropTypes.string,
+  /** @ignore-content-type */
+  __id: PropTypes.string,
 };
 
 export default CrossSellCard;
