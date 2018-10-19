@@ -8,6 +8,7 @@ build
 .tmp
 .nyc_output
 .eslintcache
+.npmrc
 npm-debug.log*
 src/common/messages/extracted
 src/common/messages/en-US.json
