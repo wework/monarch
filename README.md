@@ -15,15 +15,15 @@ Also supports:
 - items (required, if `type` is `Array`)
 
 ## React Component specs
-Proptype      | Contentful type     | Notes
----------------------------------------------
-`string`      | `Symbol`            |
-`number`      | `Number`            |
-`bool`        | `Boolean`           |
-`arrayOf`     | `Array`             | supports Links to references or assets
-`object`      | `Link` to asset     | only if jsdoc `@asset` flag added
-`shape`       | `Link` to asset     | only if jsdoc `@asset` flag added
-`instanceOf`  | `Link` to reference |
+|Proptype      | Contentful type     | Notes |
+|--------------------------------------------- |
+|`string`      | `Symbol`            | |
+|`number`      | `Number`            | |
+|`bool`        | `Boolean`           | |
+|`arrayOf`     | `Array`             | supports Links to references or assets |
+|`object`      | `Link` to asset     | only if jsdoc `@asset` flag added |
+|`shape`       | `Link` to asset     | only if jsdoc `@asset` flag added |
+|`instanceOf`  | `Link` to reference | |
 
 For ignoring proptypes, use jsdoc comment flag `@ignore-content-prop`
 
