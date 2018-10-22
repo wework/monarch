@@ -7,7 +7,7 @@ var { exec } = require ('child_process');
 var component = require(path.resolve(__dirname, process.argv[3]));
 console.log('component', component)
 
-exec(`ctf-migrate create ${process.argv[2]} -c ${process.argv[2]}`, (err, stdout, stderr) => {
+exec(`node ./node_modules/.bin/ctf-migrate create ${process.argv[2]} -c ${process.argv[2]}`, (err, stdout, stderr) => {
   if (err) {
     // node couldn't execute the command
     console.log('ctf-migrate error:', err);

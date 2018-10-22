@@ -5,7 +5,7 @@ var fs = require ('fs');
 var path = require('path');
 var { exec } = require ('child_process');
 
-exec(`react-docgen ${process.argv[2]} --pretty`, async (err, stdout, stderr) => {
+exec(`node ./node_modules/.bin/react-docgen ${process.argv[2]} --pretty`, async (err, stdout, stderr) => {
   if (err) {
     // node couldn't execute the command
     console.log('ctf-migrate error:', err);
@@ -17,7 +17,7 @@ exec(`react-docgen ${process.argv[2]} --pretty`, async (err, stdout, stderr) => 
 
   var object = await parseProps(JSON.parse(stdout));
 
-  exec(`ctf-migrate create ${object.content_type} -c ${object.content_type}`, (err, stdout, stderr) => {
+  exec(`node ./node_modules/.bin/ctf-migrate create ${object.content_type} -c ${object.content_type}`, (err, stdout, stderr) => {
     if (err) {
       // node couldn't execute the command
       console.log('ctf-migrate error:', err);
