@@ -3,19 +3,6 @@ Welcome to Monarch! We offer a node script to allow you to dynamically create Co
 
 [See it in action](https://cl.ly/b6b7795fcdb3)
 
-Currently supports [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field):
-- Symbol (short text)
-- Link (references or assets)
-- Number (decimal number)
-- Boolean
-- Array (needs `items` object as well)
-
-Also supports:
-- Validations array
-- Required
-- linkType
-- items (required, if `type` is `Array`)
-
 ## React Component specs
 |Proptype      | Contentful type     | Notes                                  |
 |--------------|---------------------|----------------------------------------|
@@ -28,6 +15,8 @@ Also supports:
 |`instanceOf`  | `Link` to reference |                                        |
 
 For ignoring proptypes, use jsdoc comment flag `@ignore-content-prop`
+
+Read more about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field).
 
 ## Getting Started
 We are not quite ready to be used in production, but in the meantime...
