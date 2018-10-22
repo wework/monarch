@@ -176,8 +176,8 @@ const dummyComponent = {
 describe('#parseProps', () => {
   test('parse component', () => {
     expect(parseProps(dummyComponent)).toEqual({
-      content_type: 'CrossSellGroup',
-      name: 'CrossSellGroup',
+      content_type: dummyComponent.displayName,
+      name: dummyComponent.displayName,
       description: '',
       fields: [
         {

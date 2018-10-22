@@ -36,11 +36,11 @@ git clone git@github.com:wework/monarch.git
 
 To create and update the migration file, simply run the node script `parseMigrate.js` with one argument:
 ```
-node parseMigrate.js <react component filename>
+node parseMigrate.js <path/to/component/file>
 ```
-or use npm script locally:
+or use command script locally:
 ```
-yarn parse:migrate <react component filename>
+yarn parse:migrate <path/to/component/file>
 ```
 
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run, name spaced with the timestamp of creation.
