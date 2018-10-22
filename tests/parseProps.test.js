@@ -161,6 +161,10 @@ describe('#buildObject', () => {
       linkType: 'Asset',
     })
   });
+
+  test('ignored field', () => {
+    expect(buildObject(ignored, '__id')).toEqual(null)
+  });
 });
 
 const dummyComponent = {
