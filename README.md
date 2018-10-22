@@ -46,19 +46,11 @@ yarn parse:migrate <path/to/component/file>
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run, name spaced with the timestamp of creation.
 
 ## Running the migration files
-Run the migrations in your application, using [`ctf-migrate`](https://www.npmjs.com/package/contentful-migrate#up). Example for running `up`, which creates the Contentful content model in your Contentful space:
-```
-  Usage: ctf-migrate up [filename] [options]
+Once you have the files generated, you are ready to push them up to Contentful!
 
-  Options:
+1. Make sure your Contentful space has been initialized with a Migration content model. If you need to initialize a space, use command [`ctf-migrate init`](https://www.npmjs.com/package/contentful-migrate#init)
 
-    -t, --access-token [access-token]  CMA token, defaults to your environment variable CONTENTFUL_MANAGEMENT_ACCESS_TOKEN if empty
-    -s, --space-id [space-id]          space id to use
-    -e, --environment-id [env-id]      id of the environment within the space (default 'master')
-    -c, --content-type [content-type]  one or more content type names to process
-    -a, --all                          processes migrations for all content types
-    -d, --dry-run                      only shows the plan, don't write anything to contentful. defaults to false
-```
+2. Once initialized, run the migrations with commands [`ctf-migrate up`](https://www.npmjs.com/package/contentful-migrate#up) to create the model & [`ctf-migrate down`](https://www.npmjs.com/package/contentful-migrate#down) to delete it.
 
 ## The future
 - support other front-end frameworks

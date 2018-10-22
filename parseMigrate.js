@@ -29,9 +29,10 @@ exec(`node ./node_modules/.bin/react-docgen ${process.argv[2]} --pretty`, async 
 
     const fileName = stdout.split('/')[stdout.split('/').length - 1].trim();
 
+    // TODO: verify fileName is correctly formatted
     fs.writeFile(`./migrations/${object.content_type}/${fileName}`, createMigration(object), function(err) {
       if(err) {
-          return console.log('fs error:', err);
+        return console.log('fs error:', err);
       }
 
       console.log("The file was updated!");

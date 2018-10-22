@@ -6,6 +6,11 @@
     "type": "git",
     "url": "git+https://github.com/WeConnect/www-quincy.git"
   },
+  "engines": {
+    "node": "8.9.1",
+    "npm": "5.5.1",
+    "yarn": "1.10.1"
+  },
   "scripts": {
     "test": "jest",
     "migrate": "node migrate.js",
