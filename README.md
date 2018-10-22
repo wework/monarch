@@ -1,7 +1,7 @@
 # monarch
 Welcome to Monarch! We offer a node script to allow you to dynamically create Contentful migration files within your application.
 
-https://cl.ly/b6b7795fcdb3
+[See it in action](https://cl.ly/b6b7795fcdb3)
 
 Currently supports [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field):
 - Symbol (short text)
