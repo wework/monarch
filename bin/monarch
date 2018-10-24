@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 require('yargs')
-  .usage('Dynamically cerate migration files based on React components\nFor more information visit https://github.com/wework/monarch')
+  .usage('Dynamically create migration files based on React components\nFor more information visit https://github.com/wework/monarch')
   .commandDir('./commands')
   .recommendCommands()
   .demandCommand(1, 'Please provide a valid command from the list above')

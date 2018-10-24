@@ -2,8 +2,7 @@
 
 exports.command = 'parse:raw [file]';
 
-exports.desc =
-  'Create Contentful migration file from raw object file';
+exports.desc = 'Create migration file from raw object file';
 
 exports.builder = (yargs) => {
   yargs

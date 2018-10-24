@@ -2,8 +2,7 @@
 
 exports.command = 'parse:react [file]';
 
-exports.desc =
-  'Create Contentful migration file from React component file';
+exports.desc = 'Create migration file from React component file';
 
 exports.builder = (yargs) => {
   yargs
