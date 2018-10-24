@@ -1,6 +1,6 @@
 {
   "name": "@wework/monarch",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Tool for dynamically generating Contentful Migrations",
   "repository": {
     "type": "git",
