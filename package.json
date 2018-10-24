@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/wework/monarch.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/wework/monarch",
   "bin": {
     "monarch": "./bin/monarch"
