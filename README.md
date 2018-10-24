@@ -4,8 +4,9 @@ Welcome to Monarch! We offer a node script to allow you to dynamically create Co
 [![npm version](https://badge.fury.io/js/%40wework%2Fmonarch.svg)](//npmjs.com/package/@wework/monarch)
 
 ## Getting Started
+Since it is still in an alpha release, to get the most recent release (these docs reference the most current version):
 ```
-npm install -g @wework/monarch
+npm install -g @wework/monarch@next
 ```
 
 Note: make sure [contentful-migrate](https://github.com/deluan/contentful-migrate) and [react-docgen](https://github.com/reactjs/react-docgen) are also installed globally.
