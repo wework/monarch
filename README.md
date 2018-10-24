@@ -9,7 +9,7 @@ Since it is still in an alpha release, to get the most recent release (these doc
 npm install -g @wework/monarch@next
 ```
 
-Note: make sure [contentful-migrate](https://github.com/deluan/contentful-migrate) and [react-docgen](https://github.com/reactjs/react-docgen) are also installed globally.
+Note: make sure [contentful-migrate](https://github.com/deluan/contentful-migrate) and [react-docgen](https://github.com/reactjs/react-docgen) are also installed globally. (This will be addressed in a later release)
 
 ## Parsing a React Component
 
