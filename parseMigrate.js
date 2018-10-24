@@ -39,5 +39,3 @@ exec(`node ./node_modules/.bin/react-docgen ${process.argv[2]} --pretty`, async 
     });
   });
 });
-
-

@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+require('yargs')
+  .usage('Dynamically cerate migration files based on React components')
+  .commandDir('./commands')
+  .recommendCommands()
+  .demandCommand(1, 'Please provide a valid command from the list above')
+  .argv;
