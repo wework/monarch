@@ -1,37 +1,46 @@
 # monarch
 Welcome to Monarch! We offer a node script to allow you to dynamically create Contentful migration files within your application.
 
-[See it in action](https://cl.ly/b6b7795fcdb3)
+[![npm version](https://badge.fury.io/js/%40wework%2Fmonarch.svg)](//npmjs.com/package/@wework/monarch)
 
-## React Component specs
-|Proptype      | Contentful type     | Notes                                  |
-|--------------|---------------------|----------------------------------------|
-|`string`      | `Symbol`            |                                        |
-|`number`      | `Number`            |                                        |
-|`bool`        | `Boolean`           |                                        |
-|`arrayOf`     | `Array`             | supports Links to references or assets |
-|`object`      | `Link` to asset     | only if jsdoc `@asset` flag added      |
-|`shape`       | `Link` to asset     | only if jsdoc `@asset` flag added      |
-|`instanceOf`  | `Link` to reference |                                        |
+## Getting Started
+```
+npm install -g @wework/monarch
+```
 
-For ignoring proptypes, use jsdoc comment flag `@ignore-content-prop`
+Note: make sure [contentful-migrate](https://github.com/deluan/contentful-migrate) and [react-docgen](https://github.com/reactjs/react-docgen) are also installed globally.
+
+## Parsing a React Component
+
+Run:
+```
+monarch parse:react <path/to/component/file>
+```
+
+Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run, name spaced with the timestamp of creation.
+
+### Proptype specs:
+|Proptype      | Contentful type     | jsdoc flag required | Notes                      |
+|--------------|---------------------|---------------------|----------------------------|
+|`string`      | `Symbol`            |                     |                            |
+|`number`      | `Number`            |                     |                            |
+|`bool`        | `Boolean`           |                     |                            |
+|`arrayOf`     | `Array`             |                     | only supports `Link` types |
+|`object`      | `Link` to asset     | `@asset`            |                            |
+|`shape`       | `Link` to asset     | `@asset`            |                            |
+|`instanceOf`  | `Link` to reference |                     |                            |
+
+For ignoring proptypes, use jsdoc comment flag [`@ignore-content-prop`](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx#L25)
+
+For adding a content model description, use jsdoc comments above the component definition.
 
 Read more about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field).
 
-## Getting Started
-We are not quite ready to be used in production, but in the meantime...
-Test it out locally (be sure to `yarn` or `npm install` before doing anything):
-```
-git clone git@github.com:wework/monarch.git
-```
+## Parsing a raw object
+If you'd rather translate a raw object ([example of structure here](https://github.com/wework/monarch/blob/master/example/dummy_data/index.js)) into a migration file, run:
 
-To create and update the migration file, simply run the node script `parseMigrate.js` with one argument:
 ```
-node parseMigrate.js <path/to/component/file>
-```
-or use command script locally:
-```
-yarn parse:migrate <path/to/component/file>
+monarch parse:raw <path/to/object/file>
 ```
 
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run, name spaced with the timestamp of creation.

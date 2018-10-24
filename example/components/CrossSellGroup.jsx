@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import CrossSellCard from './CrossSellCard.jsx';
 
+/** Grid of Cross Sell Cards */
 const CrossSellGroup = ({ headerText, bodyText, crossSellCards, centered, imageAspectRatio }) => {
   return (
     <CrossSellCard />

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-exports.command = 'parseMigrate [file]';
+exports.command = 'parse:react [file]';
 
 exports.desc =
-  'Parse React component to create dynamic Contentful migration file';
+  'Create Contentful migration file from React component file';
 
 exports.builder = (yargs) => {
   yargs
     .positional('file', {
-      describe: 'Required path to React component',
+      describe: 'Required file path to React component',
       type: 'string'
     })
 };

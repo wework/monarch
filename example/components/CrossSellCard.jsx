@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+/** single Cross Sell Card */
 const CrossSellCard = ({ headerText, bodyText, crossSellCards, centered, imageAspectRatio }) => {
   return (
     <div />
