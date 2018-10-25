@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import CrossSellCard from './CrossSellCard.jsx';
 
-/** Grid of Cross Sell Cards */
+/**
+ * Grid of Cross Sell Cards ```js what is up`
+ */
 const CrossSellGroup = ({ headerText, bodyText, crossSellCards, centered, imageAspectRatio }) => {
   return (
     <CrossSellCard />
@@ -18,7 +20,7 @@ CrossSellGroup.defaultProps = {
 
 CrossSellGroup.propTypes = {
   headerText: PropTypes.string,
-  bodyText: PropTypes.string,
+  bodyText: PropTypes.node,
   centered: PropTypes.bool,
   crossSellCards: PropTypes.arrayOf(
     PropTypes.instanceOf(CrossSellCard)
@@ -32,6 +34,7 @@ CrossSellGroup.propTypes = {
     md: PropTypes.number,
     lg: PropTypes.number,
   }),
+  someFunction: PropTypes.func,
 };
 
 export default CrossSellGroup;

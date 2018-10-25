@@ -20,6 +20,26 @@ const required = {
   },
 }
 
+const func = {
+  "func": {
+    "type": {
+      "name": "func"
+    },
+    "required": true,
+    "description": ""
+  },
+}
+
+const node = {
+  "node": {
+    "type": {
+      "name": "node"
+    },
+    "required": false,
+    "description": ""
+  },
+}
+
 const bool = {
   "centered": {
     "type": {
@@ -97,6 +117,14 @@ describe('#buildObject', () => {
     })
   });
 
+  test('short text field from node', () => {
+    expect(buildObject(node, 'node')).toEqual({
+      id: 'node',
+      name: 'node',
+      type: 'Symbol',
+    })
+  });
+
   test('required text field', () => {
     expect(buildObject(required, 'requiredText')).toEqual({
       id: 'requiredText',
@@ -104,6 +132,10 @@ describe('#buildObject', () => {
       type: 'Symbol',
       required: true,
     })
+  });
+
+  test('function field', () => {
+    expect(buildObject(func, 'func')).toEqual(null)
   });
 
   test('bool field', () => {

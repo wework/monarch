@@ -1,20 +1,29 @@
+var removeSpecialChars = require('./cleanup.js');
+
 module.exports = (props, propName) => {
   const prop = props[propName];
 
-  const { type, required, description, name } = prop;
+  let { type, required, description, name } = prop;
+
+  description = removeSpecialChars(description);
 
   if(description.includes('@ignore-content-prop')) {
     return null;
   }
 
   const typeOfProp = (type && type.name) || name;
+
+  if(typeOfProp === 'func') {
+    return null;
+  }
+
   let field = {
     id: propName,
     name: propName, // TODO: name this something better (potentially something with spaces)
     ...(prop.required && { required: true }),
   };
 
-  if(typeOfProp === 'string') {
+  if(typeOfProp === 'string' || typeOfProp === 'node') {
     field.type = 'Symbol';
   }
 
@@ -26,6 +35,7 @@ module.exports = (props, propName) => {
     field.type = 'Number'
   }
 
+  // TODO: re-evaluate this, should use a custom prop
   if(typeOfProp === 'instanceOf') {
     field = {
       ...field,

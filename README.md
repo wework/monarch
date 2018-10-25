@@ -24,12 +24,13 @@ Check out migrations directory and see that the file has been created. If you ru
 |Proptype      | Contentful type     | jsdoc flag required | Notes                      |
 |--------------|---------------------|---------------------|----------------------------|
 |`string`      | `Symbol`            |                     |                            |
+|`node`        | `Symbol`            |                     |                            |
 |`number`      | `Number`            |                     |                            |
 |`bool`        | `Boolean`           |                     |                            |
 |`arrayOf`     | `Array`             |                     | only supports `Link` types |
 |`object`      | `Link` to asset     | `@asset`            |                            |
 |`shape`       | `Link` to asset     | `@asset`            |                            |
-|`instanceOf`  | `Link` to reference |                     |                            |
+|`func`        | none                |                     | ignored by default         |
 
 For ignoring proptypes, use jsdoc comment flag [`@ignore-content-prop`](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx#L25)
 
