@@ -20,6 +20,10 @@ monarch parse:react <path/to/component/file>
 
 Check out migrations directory and see that the file has been created. If you run this script multiple times, you will see a new file for each time it is run, name spaced with the timestamp of creation.
 
+For adding a content model description, use jsdoc comments above the component definition.
+
+For ignoring proptypes, use jsdoc comment flag [`@ignore-content-prop`](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx#L25)
+
 ### Proptype specs:
 |Proptype      | Contentful type     | jsdoc flag required | Notes                      |
 |--------------|---------------------|---------------------|----------------------------|
@@ -29,14 +33,22 @@ Check out migrations directory and see that the file has been created. If you ru
 |`bool`        | `Boolean`           |                     |                            |
 |`arrayOf`     | `Array`             |                     | only supports `Link` types |
 |`object`      | `Link` to asset     | `@asset`            |                            |
+|`object`      | `Link`              |                     |                            |
 |`shape`       | `Link` to asset     | `@asset`            |                            |
+|`shape`       | `Link`              |                     |                            |
 |`func`        | none                |                     | ignored by default         |
+|`instanceOf`  | none                |                     | ignored by default         |
 
-For ignoring proptypes, use jsdoc comment flag [`@ignore-content-prop`](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx#L25)
+### Custom proptype validators:
+We offer a few custom proptype validators to use in your code base, in order to reference specific content models (see an [example here](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx)).
 
-For adding a content model description, use jsdoc comments above the component definition.
+|Validator          | Contentful type     | Notes                       |
+|-------------------|---------------------|-----------------------------|
+|`childType()`      | `Link`              | to reference                |
+|`customPropType()` | `Link`              | to reference                |
+|`validateAll()`    | `Array` of `Link`s  | to reference                |
 
-Read more about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field).
+Read more about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field) and what they mean.
 
 ## Parsing a raw object
 If you'd rather translate a raw object ([example of structure here](https://github.com/wework/monarch/blob/master/example/dummy_data/index.js)) into a migration file, run:

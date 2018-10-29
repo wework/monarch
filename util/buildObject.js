@@ -1,4 +1,79 @@
-var removeSpecialChars = require('./cleanup.js');
+var removeSpecialChars = require('./removeSpecialChars.js');
+var getReferenceComponent = require('./getReferenceComponent.js');
+var { VALIDATE_ALL, CHILD_TYPE, CUSTOM_TYPE, IS_REQUIRED, IGNORE, ASSET, ITEMS } = require('./constants.js');
+
+const caseObjectOrShape = description => {
+  if(description.includes(ASSET)) {
+    return {
+      type: 'Link',
+      linkType: 'Asset',
+    };
+  }
+
+  return {
+    type: 'Link',
+    linkType: 'Entry',
+  };
+}
+
+const mapTypeForFieldValues = (type, description = '') => {
+  const typeOfProp = type && type.name
+  switch (typeOfProp) {
+    case 'func':
+      return null;
+    case 'instanceOf':
+      return null;
+    case 'string':
+      return {
+        type: 'Symbol'
+      };
+    case 'node':
+      return {
+        type: 'Symbol'
+      };
+    case 'bool':
+      return {
+        type: 'Boolean'
+      };
+    case 'number':
+      return {
+        type: 'Number'
+      };
+    case 'custom':
+      if(type.raw.includes(CUSTOM_TYPE) || type.raw.includes(CHILD_TYPE)) {
+        if(description !== ITEMS && type.raw.includes(VALIDATE_ALL)) {
+          return {
+            type: 'Array',
+            items: {},
+            ...(type.raw.includes(IS_REQUIRED) && { required: true })
+          };
+        }
+
+        const reference = getReferenceComponent(type) || getReferenceComponent(type, CHILD_TYPE);
+        return {
+          type: 'Link',
+          linkType: 'Entry',
+          validations: [
+            { linkContentType: [ reference ] },
+          ],
+          ...(!type.raw.includes(VALIDATE_ALL) && type.raw.includes(IS_REQUIRED) && { required: true })
+        };
+      }
+
+      return null;
+    case 'object':
+      return caseObjectOrShape(description);
+    case 'shape':
+      return caseObjectOrShape(description);
+    case 'arrayOf':
+      return {
+        type: 'Array',
+        items: {}
+      };
+    default:
+      return null;
+  }
+}
 
 module.exports = (props, propName) => {
   const prop = props[propName];
@@ -7,82 +82,34 @@ module.exports = (props, propName) => {
 
   description = removeSpecialChars(description);
 
-  if(description.includes('@ignore-content-prop')) {
+  if(description.includes(IGNORE)) {
     return null;
   }
 
   const typeOfProp = (type && type.name) || name;
 
-  if(typeOfProp === 'func') {
+  let field = mapTypeForFieldValues(type, description);
+
+  if(!field) {
     return null;
   }
 
-  let field = {
+  field = {
     id: propName,
     name: propName, // TODO: name this something better (potentially something with spaces)
-    ...(prop.required && { required: true }),
+    ...field,
+    ...(required && { required: true }),
   };
 
-  if(typeOfProp === 'string' || typeOfProp === 'node') {
-    field.type = 'Symbol';
-  }
+  if(typeOfProp === 'arrayOf' || (typeOfProp === 'custom' && type.raw.includes(VALIDATE_ALL))) {
+    if(typeOfProp === 'custom') {
+      field.items = mapTypeForFieldValues(type, ITEMS)
+    }
 
-  if(typeOfProp === 'bool') {
-    field.type = 'Boolean';
-  }
-
-  if(typeOfProp === 'number') {
-    field.type = 'Number'
-  }
-
-  // TODO: re-evaluate this, should use a custom prop
-  if(typeOfProp === 'instanceOf') {
-    field = {
-      ...field,
-      type: 'Link',
-      linkType: 'Entry',
-      validations: [
-        { linkContentType: [ type.value ] },
-      ],
+    if(type.value && (type.value.name === 'object' || type.value.name === 'shape')) {
+      field.items = mapTypeForFieldValues(type.value, description)
     }
   }
 
-  if((typeOfProp === 'object' || typeOfProp === 'shape') && description.includes('@asset')) {
-    field = {
-      ...field,
-      type: 'Link',
-      linkType: 'Asset',
-    }
-  }
-
-  if(typeOfProp === 'arrayOf') {
-    field.type = 'Array';
-    field.items = {};
-
-    if(type.value.name === 'instanceOf') {
-      field.items = {
-        type: 'Link',
-        linkType: 'Entry',
-        validations: [
-          { linkContentType: [ type.value.value ] },
-        ],
-      }
-    }
-
-    if((type.value.name === 'object' || type.value.name === 'shape') && description.includes('@asset')) {
-      field.items = {
-        type: 'Link',
-        linkType: 'Asset',
-      }
-    }
-
-    if(type.value.name === 'shape') {
-      // TODO: what to do to support shape without description... do we create a new migration for these cases?
-      // Object.keys(type.value.value).forEach(subPropName => {
-      //   let item = buildObject(type.value.value, subPropName);
-      //   field.items = item;
-      // })
-    }
-  }
   return field;
 }

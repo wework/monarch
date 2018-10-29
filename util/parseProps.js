@@ -1,4 +1,4 @@
-var removeSpecialChars = require('./cleanup.js');
+var removeSpecialChars = require('./removeSpecialChars.js');
 var buildObject = require('./buildObject.js');
 
 module.exports = component => {

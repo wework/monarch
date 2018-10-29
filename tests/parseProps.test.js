@@ -1,4 +1,4 @@
-const { parseProps, buildObject } = require('../util/');
+const { parseProps, buildObject, IGNORE, ASSET, VALIDATE_ALL, CUSTOM_TYPE, CHILD_TYPE, IS_REQUIRED } = require('../util/');
 
 const string = {
   "headerText": {
@@ -50,25 +50,37 @@ const bool = {
   },
 }
 
-const instanceOf = {
-  "crossSellCard": {
+const shape = {
+  "shape": {
     "type": {
-      "name": "instanceOf",
-      "value": "CrossSellCard"
+      "name": "shape",
+      "value": {
+        "key": {
+          "name": "string",
+          "required": false
+        }
+      }
     },
     "required": false,
     "description": ""
   },
 }
 
-const arrayOfinstanceOf = {
-  "crossSellCards": {
+const object = {
+  "object": {
     "type": {
-      "name": "arrayOf",
-      "value": {
-        "name": "instanceOf",
-        "value": "CrossSellCard"
-      }
+      "name": "object"
+    },
+    "required": false,
+    "description": ""
+  }
+}
+
+const instanceOf = {
+  "crossSellCard": {
+    "type": {
+      "name": "instanceOf",
+      "value": "CrossSellCard"
     },
     "required": false,
     "description": ""
@@ -81,7 +93,7 @@ const ignored = {
       "name": "string"
     },
     "required": false,
-    "description": "@ignore-content-prop"
+    "description": IGNORE
   },
 }
 
@@ -91,7 +103,7 @@ const asset = {
       "name": "object"
     },
     "required": false,
-    "description": "@asset"
+    "description": ASSET
   },
 }
 
@@ -104,7 +116,55 @@ const arrayOfAssets = {
       }
     },
     "required": false,
-    "description": "@asset"
+    "description": ASSET
+  }
+}
+
+const childTypeRequired = {
+  childTypeRequired: {
+    type: { name: 'custom', raw: `${CHILD_TYPE}(CrossSellCard).${IS_REQUIRED}` },
+    required: false,
+    description: ''
+  }
+};
+
+const childType = {
+  childType: {
+    type: { name: 'custom', raw: `${CHILD_TYPE}(CrossSellCard)` },
+    required: false,
+    description: ''
+  }
+};
+
+const customTypeRequired = {
+  customTypeRequired: {
+    type: { name: 'custom', raw: `${CUSTOM_TYPE}(CrossSellCard).${IS_REQUIRED}` },
+    required: false,
+    description: ''
+  }
+};
+
+const customType = {
+  customType: {
+    type: { name: 'custom', raw: `${CUSTOM_TYPE}(CrossSellCard)` },
+    required: false,
+    description: ''
+  }
+};
+
+const validateAll = {
+  validateAll: {
+    type: { name: 'custom', raw: `${VALIDATE_ALL}(${CUSTOM_TYPE}(CrossSellCard))` },
+    required: false,
+    description: ''
+  }
+}
+
+const validateAllRequired = {
+  validateAllRequired: {
+    type: { name: 'custom', raw: `${VALIDATE_ALL}(${CUSTOM_TYPE}(CrossSellCard)).${IS_REQUIRED}` },
+    required: false,
+    description: ''
   }
 }
 
@@ -146,32 +206,23 @@ describe('#buildObject', () => {
     })
   });
 
-  test('instanceOf field', () => {
-    expect(buildObject(instanceOf, 'crossSellCard')).toEqual({
-      id: 'crossSellCard',
-      name: 'crossSellCard',
+  test('shape', () => {
+    expect(buildObject(shape, 'shape')).toEqual({
+      id: 'shape',
+      name: 'shape',
       type: 'Link',
       linkType: 'Entry',
-      validations: [
-        { linkContentType: [ 'CrossSellCard' ] }
-      ]
     })
-  });
+  })
 
-  test('arrayOfinstanceOf field', () => {
-    expect(buildObject(arrayOfinstanceOf, 'crossSellCards')).toEqual({
-      id: 'crossSellCards',
-      name: 'crossSellCards',
-      type: 'Array',
-      items: {
-        type: 'Link',
-        linkType: 'Entry',
-        validations: [
-          { linkContentType: [ 'CrossSellCard' ] },
-        ],
-      }
+  test('object', () => {
+    expect(buildObject(object, 'object')).toEqual({
+      id: 'object',
+      name: 'object',
+      type: 'Link',
+      linkType: 'Entry',
     })
-  });
+  })
 
   test('arrayOfAssets field', () => {
     expect(buildObject(arrayOfAssets, 'images')).toEqual({
@@ -197,6 +248,93 @@ describe('#buildObject', () => {
   test('ignored field', () => {
     expect(buildObject(ignored, '__id')).toEqual(null)
   });
+
+  test('instanceOf field', () => {
+    expect(buildObject(instanceOf, 'crossSellCard')).toEqual(null)
+  });
+
+  describe('custom validators', () =>{
+    test('childType', () => {
+      expect(buildObject(childType, 'childType')).toEqual({
+        id: 'childType',
+        name: 'childType',
+        type: 'Link',
+        linkType: 'Entry',
+        validations: [
+          { linkContentType: [ 'CrossSellCard' ] }
+        ],
+      })
+    })
+
+    test(`${CHILD_TYPE} required`, () => {
+      expect(buildObject(childTypeRequired, 'childTypeRequired')).toEqual({
+        id: 'childTypeRequired',
+        name: 'childTypeRequired',
+        type: 'Link',
+        linkType: 'Entry',
+        validations: [
+          { linkContentType: [ 'CrossSellCard' ] }
+        ],
+        required: true,
+      })
+    })
+
+    test(CUSTOM_TYPE, () => {
+      expect(buildObject(customType, 'customType')).toEqual({
+        id: 'customType',
+        name: 'customType',
+        type: 'Link',
+        linkType: 'Entry',
+        validations: [
+          { linkContentType: [ 'CrossSellCard' ] }
+        ],
+      })
+    })
+
+    test(`${CUSTOM_TYPE} required`, () => {
+      expect(buildObject(customTypeRequired, 'customTypeRequired')).toEqual({
+        id: 'customTypeRequired',
+        name: 'customTypeRequired',
+        type: 'Link',
+        linkType: 'Entry',
+        validations: [
+          { linkContentType: [ 'CrossSellCard' ] }
+        ],
+        required: true,
+      })
+    })
+
+    test(VALIDATE_ALL, () => {
+      expect(buildObject(validateAll, 'validateAll')).toEqual({
+        id: 'validateAll',
+        name: 'validateAll',
+        type: 'Array',
+        items: {
+          type: 'Link',
+          linkType: 'Entry',
+          validations: [
+            { linkContentType: [ 'CrossSellCard' ] },
+          ],
+        }
+      })
+    })
+
+    test(`${VALIDATE_ALL} required`, () => {
+      expect(buildObject(validateAllRequired, 'validateAllRequired')).toEqual({
+        id: 'validateAllRequired',
+        name: 'validateAllRequired',
+        type: 'Array',
+        items: {
+          type: 'Link',
+          linkType: 'Entry',
+          validations: [
+            { linkContentType: [ 'CrossSellCard' ] },
+          ],
+        },
+        required: true,
+      })
+    })
+  })
 });
 
 const dummyComponent = {
