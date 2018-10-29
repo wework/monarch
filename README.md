@@ -1,5 +1,5 @@
 # monarch
-Welcome to Monarch! We offer a node script to allow you to dynamically create Contentful migration files within your application.
+Welcome to Monarch! We offer a node script to allow you to dynamically create [Contentful migration files](https://github.com/contentful/contentful-migration#createcontenttypeid-opts--contenttype) within your application.
 
 [![npm version](https://badge.fury.io/js/%40wework%2Fmonarch.svg)](//npmjs.com/package/@wework/monarch)
 
