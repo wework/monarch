@@ -24,6 +24,8 @@ For adding a content model description, use jsdoc comments above the component d
 
 For ignoring proptypes, use jsdoc comment flag [`@ignore-content-prop`](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx#L25)
 
+Read about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field).
+
 ### Proptype specs:
 |Proptype      | Contentful type     | jsdoc flag required | Notes                      |
 |--------------|---------------------|---------------------|----------------------------|
@@ -47,8 +49,6 @@ We offer a few custom proptype validators to use in your code base, in order to 
 |`childType()`      | `Link`              | to reference                |
 |`customPropType()` | `Link`              | to reference                |
 |`validateAll()`    | `Array` of `Link`s  | to reference                |
-
-Read more about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field) and what they mean.
 
 ## Parsing a raw object
 If you'd rather translate a raw object ([example of structure here](https://github.com/wework/monarch/blob/master/example/dummy_data/index.js)) into a migration file, run:
