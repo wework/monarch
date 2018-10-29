@@ -4,7 +4,7 @@ Welcome to Monarch! We offer a node script to allow you to dynamically create [C
 [![npm version](https://badge.fury.io/js/%40wework%2Fmonarch.svg)](//npmjs.com/package/@wework/monarch)
 
 ## Getting Started
-Since it is still in an alpha release, to get the most recent release (these docs reference the most current version):
+These docs reference the most current version. Since it is still in an alpha release, run the following to get the most recent release:
 ```
 npm install -g @wework/monarch@next
 ```
