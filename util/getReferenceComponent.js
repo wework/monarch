@@ -1,3 +1,4 @@
+// Gets name of reference component
 module.exports = (type = {}, validatorFuncName = 'customPropType') => {
   var splittingRef = `${validatorFuncName}(`;
 
