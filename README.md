@@ -66,6 +66,10 @@ Once you have the files generated, you are ready to push them up to Contentful!
 
 2. Once initialized, run the migrations with commands [`ctf-migrate up`](https://www.npmjs.com/package/contentful-migrate#up) to create the model & [`ctf-migrate down`](https://www.npmjs.com/package/contentful-migrate#down) to delete it.
 
+## Contributing
+
+Contributions are always welcome, no matter how large or small. Before contributing, please read the [code of conduct](CODE_OF_CONDUCT.md).
+
 ## The future
 - support other front-end frameworks
 - export custom validators
