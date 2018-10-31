@@ -13,6 +13,10 @@ module.exports = component => {
     fields: []
   }
   namesOfProps.forEach(propName => {
+    if(propName.startsWith('_')) {
+      return
+    }
+
     let field = buildObject(props, propName);
     if(field) {
       obj.fields.push(field);
