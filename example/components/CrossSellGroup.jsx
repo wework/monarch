@@ -24,6 +24,7 @@ CrossSellGroup.propTypes = {
   bodyText: PropTypes.node,
   centered: PropTypes.bool,
   /** @ignore-content-prop */
+  ignoreThisProp: PropTypes.string,
   __id: PropTypes.string,
   /** @ignore-content-prop */
   imageAspectRatio: PropTypes.shape({
