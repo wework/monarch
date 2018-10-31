@@ -38,9 +38,9 @@ Read about [contentful content types](https://github.com/contentful/contentful-m
 |`object`      | `Link`              |                     |                            |
 |`shape`       | `Link` to asset     | `@asset`            |                            |
 |`shape`       | `Link`              |                     |                            |
-|`func`        | none                |                     | ignored by default         |
-|`instanceOf`  | none                |                     | ignored by default         |
-|prop name starts with`_`  | none    |                     | ignored by default         |
+|`func`        | `null`              |                     | ignored by default         |
+|`instanceOf`  | `null`              |                     | ignored by default         |
+|prop name starts with `_`  | `null` |                     | ignored by default (ex. `_id`) |
 
 ### Custom proptype validators:
 We offer a few custom proptype validators to use in your code base, in order to reference specific content models (see an [example here](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx)).
