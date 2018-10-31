@@ -1,9 +1,11 @@
+const { CUSTOM_TYPE } = require('./constants.js');
+
 // Gets name of reference component
-module.exports = (type = {}, validatorFuncName = 'customPropType') => {
-  var splittingRef = `${validatorFuncName}(`;
+module.exports = (type = {}, validatorFuncName = CUSTOM_TYPE) => {
+  const splittingRef = `${validatorFuncName}(`;
 
   if(type.raw && type.raw.includes(splittingRef)) {
-    var reference = type.raw.split(splittingRef)[1].split(')')[0];
+    const reference = type.raw.split(splittingRef)[1].split(')')[0];
     return reference;
   }
 

@@ -15,9 +15,8 @@
   },
   "scripts": {
     "test": "jest",
-    "migrate": "node migrate.js",
-    "parse": "node parseProps.js",
-    "parse:migrate": "node parseMigrate.js"
+    "parse:raw": "node bin/monarch parse:raw",
+    "parse:react": "node bin/monarch parse:react"
   },
   "dependencies": {
     "contentful-migrate": "^0.8.0",
