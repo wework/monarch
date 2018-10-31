@@ -88,7 +88,7 @@ const instanceOf = {
 }
 
 const ignored = {
-  "__id": {
+  "id": {
     "type": {
       "name": "string"
     },
@@ -246,7 +246,7 @@ describe('#buildObject', () => {
   });
 
   test('ignored field', () => {
-    expect(buildObject(ignored, '__id')).toEqual(null)
+    expect(buildObject(ignored, 'id')).toEqual(null)
   });
 
   test('instanceOf field', () => {
@@ -347,11 +347,52 @@ const dummyComponent = {
   }
 };
 
+const dummyComponentWith_ = {
+  "description": "",
+  "displayName": "CrossSellGroup",
+  "methods": [],
+  "props": {
+    ...string,
+    ...arrayOfAssets,
+    "_id": {
+      "type": {
+        "name": "string"
+      },
+      "required": false,
+    },
+  }
+};
+
+
 describe('#parseProps', () => {
   test('parse component', () => {
     expect(parseProps(dummyComponent)).toEqual({
       content_type: dummyComponent.displayName,
       name: dummyComponent.displayName,
+      description: '',
+      fields: [
+        {
+          id: 'headerText',
+          name: 'headerText',
+          type: 'Symbol',
+        },
+        {
+          id: 'images',
+          name: 'images',
+          type: 'Array',
+          items: {
+            type: 'Link',
+            linkType: 'Asset',
+          }
+        }
+      ]
+    })
+  })
+
+  test('ignore propName with _', () => {
+    expect(parseProps(dummyComponentWith_)).toEqual({
+      content_type: dummyComponentWith_.displayName,
+      name: dummyComponentWith_.displayName,
       description: '',
       fields: [
         {
