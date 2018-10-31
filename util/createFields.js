@@ -1,4 +1,4 @@
-var createField = require('./createField.js');
+const createField = require('./createField.js');
 
 module.exports = (component) => {
   if(!component.fields) {

@@ -1,6 +1,6 @@
-var removeSpecialChars = require('./removeSpecialChars.js');
-var getReferenceComponent = require('./getReferenceComponent.js');
-var { VALIDATE_ALL, CHILD_TYPE, CUSTOM_TYPE, IS_REQUIRED, IGNORE, ASSET, ITEMS } = require('./constants.js');
+const removeSpecialChars = require('./removeSpecialChars.js');
+const getReferenceComponent = require('./getReferenceComponent.js');
+const { VALIDATE_ALL, CHILD_TYPE, CUSTOM_TYPE, IS_REQUIRED, IGNORE, ASSET, ITEMS } = require('./constants.js');
 
 const caseObjectOrShape = description => {
   if(description.includes(ASSET)) {

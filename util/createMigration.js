@@ -1,4 +1,4 @@
-var createFields = require('./createFields.js');
+const createFields = require('./createFields.js');
 
 // contentful-migrate (up & down)
 // TODO: support contentful-cli (non up & down)

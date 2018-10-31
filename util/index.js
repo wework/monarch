@@ -1,13 +1,13 @@
-var createMigration = require('./createMigration.js');
-var createFields = require('./createFields.js');
-var createField = require('./createField.js');
-var parseProps = require('./parseProps.js');
-var buildObject = require('./buildObject.js');
-var removeSpecialChars = require('./removeSpecialChars.js');
-var getReferenceComponent = require('./getReferenceComponent.js');
-var constants = require('./constants.js');
+const createMigration = require('./createMigration.js');
+const createFields = require('./createFields.js');
+const createField = require('./createField.js');
+const parseProps = require('./parseProps.js');
+const buildObject = require('./buildObject.js');
+const removeSpecialChars = require('./removeSpecialChars.js');
+const getReferenceComponent = require('./getReferenceComponent.js');
+const constants = require('./constants.js');
 
-var isJSFile = fileName => (/\.js$/i).test(fileName);
+const isJSFile = fileName => (/\.js$/i).test(fileName);
 
 module.exports = {
   createMigration,

@@ -1,11 +1,11 @@
-var removeSpecialChars = require('./removeSpecialChars.js');
-var buildObject = require('./buildObject.js');
+const removeSpecialChars = require('./removeSpecialChars.js');
+const buildObject = require('./buildObject.js');
 
 module.exports = component => {
-  var { description, displayName, props } = component;
+  let { description, displayName, props } = component;
   description = removeSpecialChars(description);
 
-  var namesOfProps = Object.keys(props);
+  const namesOfProps = Object.keys(props);
   const obj = {
     name: displayName,
     content_type: displayName,

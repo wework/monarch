@@ -1,4 +1,4 @@
-var { isJSFile, removeSpecialChars, getReferenceComponent } = require('../util/');
+const { isJSFile, removeSpecialChars, getReferenceComponent } = require('../util/');
 
 describe('#removeSpecialChars', () => {
   test("returns string without ` or '", () => {
