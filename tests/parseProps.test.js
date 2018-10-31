@@ -347,69 +347,42 @@ const dummyComponent = {
   }
 };
 
-const dummyComponentWith_ = {
-  "description": "",
-  "displayName": "CrossSellGroup",
-  "methods": [],
-  "props": {
-    ...string,
-    ...arrayOfAssets,
-    "_id": {
-      "type": {
-        "name": "string"
-      },
-      "required": false,
-    },
-  }
-};
+const dummyComponentWith_ = dummyComponent
+dummyComponentWith_.props._id = {
+  "type": {
+    "name": "string"
+  },
+  "required": false,
+}
 
+const expectedOutput = {
+  content_type: dummyComponent.displayName,
+  name: dummyComponent.displayName,
+  description: '',
+  fields: [
+    {
+      id: 'headerText',
+      name: 'headerText',
+      type: 'Symbol',
+    },
+    {
+      id: 'images',
+      name: 'images',
+      type: 'Array',
+      items: {
+        type: 'Link',
+        linkType: 'Asset',
+      }
+    }
+  ]
+}
 
 describe('#parseProps', () => {
   test('parse component', () => {
-    expect(parseProps(dummyComponent)).toEqual({
-      content_type: dummyComponent.displayName,
-      name: dummyComponent.displayName,
-      description: '',
-      fields: [
-        {
-          id: 'headerText',
-          name: 'headerText',
-          type: 'Symbol',
-        },
-        {
-          id: 'images',
-          name: 'images',
-          type: 'Array',
-          items: {
-            type: 'Link',
-            linkType: 'Asset',
-          }
-        }
-      ]
-    })
+    expect(parseProps(dummyComponent)).toEqual(expectedOutput)
   })
 
   test('ignore propName with _', () => {
-    expect(parseProps(dummyComponentWith_)).toEqual({
-      content_type: dummyComponentWith_.displayName,
-      name: dummyComponentWith_.displayName,
-      description: '',
-      fields: [
-        {
-          id: 'headerText',
-          name: 'headerText',
-          type: 'Symbol',
-        },
-        {
-          id: 'images',
-          name: 'images',
-          type: 'Array',
-          items: {
-            type: 'Link',
-            linkType: 'Asset',
-          }
-        }
-      ]
-    })
+    expect(parseProps(dummyComponentWith_)).toEqual(expectedOutput)
   })
 })
