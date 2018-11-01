@@ -168,6 +168,26 @@ const validateAllRequired = {
   }
 }
 
+const oneOf = {
+  "oneOf": {
+    "type": {
+      "name": "enum",
+      "value": [
+        {
+          "value": "'yes'",
+          "computed": false
+        },
+        {
+          "value": "'no'",
+          "computed": false
+        }
+      ]
+    },
+    "required": false,
+    "description": ""
+  }
+}
+
 describe('#buildObject', () => {
   test('short text field', () => {
     expect(buildObject(string, 'headerText')).toEqual({
@@ -182,6 +202,17 @@ describe('#buildObject', () => {
       id: 'node',
       name: 'node',
       type: 'Symbol',
+    })
+  });
+
+  test('short text field with predefined values', () => {
+    expect(buildObject(oneOf, 'oneOf')).toEqual({
+      id: 'oneOf',
+      name: 'oneOf',
+      type: 'Symbol',
+      validations: [
+        { in: [ 'yes', 'no'] }
+      ]
     })
   });
 

@@ -39,6 +39,15 @@ const mapTypeForFieldValues = (type, description = '') => {
       return {
         type: 'Number'
       };
+    case 'enum':
+      const values = type.value.map(each => each.value.replace(/["']/g, ''));
+
+      return {
+        type: 'Symbol',
+        validations: [
+          { in: values }
+        ]
+      };
     case 'custom':
       if(type.raw.includes(CUSTOM_TYPE) || type.raw.includes(CHILD_TYPE)) {
         if(description !== ITEMS && type.raw.includes(VALIDATE_ALL)) {

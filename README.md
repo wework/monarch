@@ -31,6 +31,7 @@ Read about [contentful content types](https://github.com/contentful/contentful-m
 |--------------|---------------------|---------------------|----------------------------|
 |`string`      | `Symbol`            |                     |                            |
 |`node`        | `Symbol`            |                     |                            |
+|`oneOf`       | `Symbol` w/ predefined values |           |                            |
 |`number`      | `Number`            |                     |                            |
 |`bool`        | `Boolean`           |                     |                            |
 |`arrayOf`     | `Array`             |                     | only supports `Link` types |

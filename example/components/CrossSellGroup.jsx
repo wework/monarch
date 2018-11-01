@@ -41,6 +41,7 @@ CrossSellGroup.propTypes = {
     key: PropTypes.string,
   }),
   someObject: PropTypes.object,
+  yesNo: PropTypes.oneOf(['yes', 'no']),
 };
 
 export default CrossSellGroup;
