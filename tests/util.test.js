@@ -2,10 +2,8 @@ const { isJSFile, removeSpecialChars, getReferenceComponent } = require('../util
 
 describe('#removeSpecialChars', () => {
   test("returns string without ` or '", () => {
-    expect(removeSpecialChars("we have some ```quotes``` and 'then' things")).toEqual(
-      'we have some quotes and then things'
-    );
-  });
+    expect(removeSpecialChars("we have some ```quotes``` and 'then' things\n more things")).toEqual('we have some quotes and then things more things')
+  })
 });
 
 describe('#isJSFile', () => {
