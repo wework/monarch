@@ -7,16 +7,14 @@ import { childType, customPropType, validateAll } from '../lib/validators';
  * Grid of Cross Sell Cards
  */
 const CrossSellGroup = ({ headerText, bodyText, crossSellCards, centered, imageAspectRatio }) => {
-  return (
-    <CrossSellCard />
-  );
+  return <CrossSellCard />;
 };
 
 CrossSellGroup.defaultProps = {
   imageAspectRatio: {
     tiny: 7 / 5,
-    md: 16 / 9,
-  },
+    md: 16 / 9
+  }
 };
 
 CrossSellGroup.propTypes = {
@@ -31,17 +29,17 @@ CrossSellGroup.propTypes = {
     tiny: PropTypes.number,
     sm: PropTypes.number,
     md: PropTypes.number,
-    lg: PropTypes.number,
+    lg: PropTypes.number
   }),
   someFunction: PropTypes.func,
   crossSellCards: validateAll(customPropType(CrossSellCard)).isRequired,
   children: childType(CrossSellCard),
   crossSellCard: customPropType(CrossSellCard),
   someShape: PropTypes.shape({
-    key: PropTypes.string,
+    key: PropTypes.string
   }),
   someObject: PropTypes.object,
-  yesNo: PropTypes.oneOf(['yes', 'no']),
+  yesNo: PropTypes.oneOf(['yes', 'no'])
 };
 
 export default CrossSellGroup;

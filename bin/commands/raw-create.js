@@ -4,17 +4,16 @@ exports.command = 'parse:raw [file]';
 
 exports.desc = 'Create migration file from raw object file';
 
-exports.builder = (yargs) => {
-  yargs
-    .positional('file', {
-      describe: 'Required file path to object',
-      type: 'string'
-    })
+exports.builder = yargs => {
+  yargs.positional('file', {
+    describe: 'Required file path to object',
+    type: 'string'
+  });
 };
 
 const runMigrate = require('../../lib/migrate.js');
 
-exports.handler = async (args) => {
+exports.handler = async args => {
   const { file } = args;
 
   runMigrate(file);

@@ -6,5 +6,5 @@ module.exports = {
 
   IGNORE: '@ignore-content-prop',
   ASSET: '@asset',
-  ITEMS: '@items',
+  ITEMS: '@items'
 };

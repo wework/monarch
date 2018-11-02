@@ -11,17 +11,17 @@ module.exports = component => {
     content_type: displayName,
     description,
     fields: []
-  }
+  };
   namesOfProps.forEach(propName => {
-    if(propName.startsWith('_')) {
-      return
+    if (propName.startsWith('_')) {
+      return;
     }
 
     let field = buildObject(props, propName);
-    if(field) {
+    if (field) {
       obj.fields.push(field);
     }
-  })
+  });
 
   return obj;
 };

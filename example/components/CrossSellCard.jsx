@@ -3,9 +3,7 @@ import React from 'react';
 
 /** single Cross Sell Card */
 const CrossSellCard = ({ headerText, bodyText, crossSellCards, centered, imageAspectRatio }) => {
-  return (
-    <div />
-  );
+  return <div />;
 };
 
 CrossSellCard.propTypes = {
@@ -16,7 +14,7 @@ CrossSellCard.propTypes = {
   url: PropTypes.string,
   linkText: PropTypes.string,
   /** @ignore-content-prop */
-  __id: PropTypes.string,
+  __id: PropTypes.string
 };
 
 export default CrossSellCard;

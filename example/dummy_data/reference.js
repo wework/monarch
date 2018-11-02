@@ -7,7 +7,7 @@ module.exports = {
       id: 'refText',
       name: 'Ref Text',
       type: 'Symbol',
-      required: true,
-    },
-  ],
+      required: true
+    }
+  ]
 };

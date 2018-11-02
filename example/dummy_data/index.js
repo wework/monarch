@@ -7,41 +7,36 @@ module.exports = {
       id: 'shortText',
       name: 'Short Text',
       type: 'Symbol',
-      required: true,
+      required: true
     },
     {
       id: 'shortTextWithValidations',
       name: 'Short Text with Validations',
       type: 'Symbol',
-      validations: [
-        { unique: true },
-        { regexp: { pattern: "^\\w[\\w.-]*@([\\w-]+\\.)+[\\w-]+$" } },
-      ]
+      validations: [{ unique: true }, { regexp: { pattern: '^\\w[\\w.-]*@([\\w-]+\\.)+[\\w-]+$' } }]
     },
     {
       id: 'decimalNumber',
       name: 'Decimal Number',
-      type: 'Number',
+      type: 'Number'
     },
     {
       id: 'boolean',
       name: 'Boolean Value',
-      type: 'Boolean',
+      type: 'Boolean'
     },
     {
       id: 'image',
       name: 'Image',
       type: 'Link',
-      linkType: 'Asset',
+      linkType: 'Asset'
     },
     {
       id: 'reference',
       name: 'Reference',
       type: 'Link',
       linkType: 'Entry',
-      validations: [
-        { linkContentType: [ 'faqs' ] }
-      ]
+      validations: [{ linkContentType: ['faqs'] }]
     },
     {
       id: 'referenceMany',
@@ -50,10 +45,8 @@ module.exports = {
       items: {
         type: 'Link',
         linkType: 'Entry',
-        validations: [
-          { linkContentType: [ 'faqs' ] },
-        ],
+        validations: [{ linkContentType: ['faqs'] }]
       }
     }
   ]
-}
+};

@@ -3,21 +3,21 @@ const getReferenceComponent = require('./getReferenceComponent.js');
 const { VALIDATE_ALL, CHILD_TYPE, CUSTOM_TYPE, IS_REQUIRED, IGNORE, ASSET, ITEMS } = require('./constants.js');
 
 const caseObjectOrShape = description => {
-  if(description.includes(ASSET)) {
+  if (description.includes(ASSET)) {
     return {
       type: 'Link',
-      linkType: 'Asset',
+      linkType: 'Asset'
     };
   }
 
   return {
     type: 'Link',
-    linkType: 'Entry',
+    linkType: 'Entry'
   };
-}
+};
 
 const mapTypeForFieldValues = (type, description = '') => {
-  const typeOfProp = type && type.name
+  const typeOfProp = type && type.name;
   switch (typeOfProp) {
     case 'func':
       return null;
@@ -44,13 +44,11 @@ const mapTypeForFieldValues = (type, description = '') => {
 
       return {
         type: 'Symbol',
-        validations: [
-          { in: values }
-        ]
+        validations: [{ in: values }]
       };
     case 'custom':
-      if(type.raw.includes(CUSTOM_TYPE) || type.raw.includes(CHILD_TYPE)) {
-        if(description !== ITEMS && type.raw.includes(VALIDATE_ALL)) {
+      if (type.raw.includes(CUSTOM_TYPE) || type.raw.includes(CHILD_TYPE)) {
+        if (description !== ITEMS && type.raw.includes(VALIDATE_ALL)) {
           return {
             type: 'Array',
             items: {},
@@ -62,9 +60,7 @@ const mapTypeForFieldValues = (type, description = '') => {
         return {
           type: 'Link',
           linkType: 'Entry',
-          validations: [
-            { linkContentType: [ reference ] },
-          ],
+          validations: [{ linkContentType: [reference] }],
           ...(!type.raw.includes(VALIDATE_ALL) && type.raw.includes(IS_REQUIRED) && { required: true })
         };
       }
@@ -82,7 +78,7 @@ const mapTypeForFieldValues = (type, description = '') => {
     default:
       return null;
   }
-}
+};
 
 module.exports = (props, propName) => {
   const prop = props[propName];
@@ -91,7 +87,7 @@ module.exports = (props, propName) => {
 
   description = removeSpecialChars(description);
 
-  if(description.includes(IGNORE)) {
+  if (description.includes(IGNORE)) {
     return null;
   }
 
@@ -99,7 +95,7 @@ module.exports = (props, propName) => {
 
   let field = mapTypeForFieldValues(type, description);
 
-  if(!field) {
+  if (!field) {
     return null;
   }
 
@@ -107,18 +103,18 @@ module.exports = (props, propName) => {
     id: propName,
     name: propName, // TODO: name this something better (potentially something with spaces)
     ...field,
-    ...(required && { required: true }),
+    ...(required && { required: true })
   };
 
-  if(typeOfProp === 'arrayOf' || (typeOfProp === 'custom' && type.raw.includes(VALIDATE_ALL))) {
-    if(typeOfProp === 'custom') {
-      field.items = mapTypeForFieldValues(type, ITEMS)
+  if (typeOfProp === 'arrayOf' || (typeOfProp === 'custom' && type.raw.includes(VALIDATE_ALL))) {
+    if (typeOfProp === 'custom') {
+      field.items = mapTypeForFieldValues(type, ITEMS);
     }
 
-    if(type.value && (type.value.name === 'object' || type.value.name === 'shape')) {
-      field.items = mapTypeForFieldValues(type.value, description)
+    if (type.value && (type.value.name === 'object' || type.value.name === 'shape')) {
+      field.items = mapTypeForFieldValues(type.value, description);
     }
   }
 
   return field;
-}
+};

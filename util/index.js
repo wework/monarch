@@ -7,7 +7,7 @@ const removeSpecialChars = require('./removeSpecialChars.js');
 const getReferenceComponent = require('./getReferenceComponent.js');
 const constants = require('./constants.js');
 
-const isJSFile = fileName => (/\.js$/i).test(fileName);
+const isJSFile = fileName => /\.js$/i.test(fileName);
 
 module.exports = {
   createMigration,
@@ -18,5 +18,5 @@ module.exports = {
   isJSFile,
   removeSpecialChars,
   getReferenceComponent,
-  ...constants,
+  ...constants
 };

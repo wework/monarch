@@ -1,124 +1,133 @@
-const { parseProps, buildObject, IGNORE, ASSET, VALIDATE_ALL, CUSTOM_TYPE, CHILD_TYPE, IS_REQUIRED } = require('../util/');
+const {
+  parseProps,
+  buildObject,
+  IGNORE,
+  ASSET,
+  VALIDATE_ALL,
+  CUSTOM_TYPE,
+  CHILD_TYPE,
+  IS_REQUIRED
+} = require('../util/');
 
 const string = {
-  "headerText": {
-    "type": {
-      "name": "string"
+  headerText: {
+    type: {
+      name: 'string'
     },
-    "required": false,
-    "description": ""
-  },
-}
+    required: false,
+    description: ''
+  }
+};
 
 const required = {
-  "requiredText": {
-    "type": {
-      "name": "string"
+  requiredText: {
+    type: {
+      name: 'string'
     },
-    "required": true,
-    "description": ""
-  },
-}
+    required: true,
+    description: ''
+  }
+};
 
 const func = {
-  "func": {
-    "type": {
-      "name": "func"
+  func: {
+    type: {
+      name: 'func'
     },
-    "required": true,
-    "description": ""
-  },
-}
+    required: true,
+    description: ''
+  }
+};
 
 const node = {
-  "node": {
-    "type": {
-      "name": "node"
+  node: {
+    type: {
+      name: 'node'
     },
-    "required": false,
-    "description": ""
-  },
-}
+    required: false,
+    description: ''
+  }
+};
 
 const bool = {
-  "centered": {
-    "type": {
-      "name": "bool"
+  centered: {
+    type: {
+      name: 'bool'
     },
-    "required": false,
-    "description": ""
-  },
-}
+    required: false,
+    description: ''
+  }
+};
 
 const shape = {
-  "shape": {
-    "type": {
-      "name": "shape",
-      "value": {
-        "key": {
-          "name": "string",
-          "required": false
+  shape: {
+    type: {
+      name: 'shape',
+      value: {
+        key: {
+          name: 'string',
+          required: false
         }
       }
     },
-    "required": false,
-    "description": ""
-  },
-}
+    required: false,
+    description: ''
+  }
+};
 
 const object = {
-  "object": {
-    "type": {
-      "name": "object"
+  object: {
+    type: {
+      name: 'object'
     },
-    "required": false,
-    "description": ""
+    required: false,
+    description: ''
   }
-}
+};
 
 const instanceOf = {
-  "crossSellCard": {
-    "type": {
-      "name": "instanceOf",
-      "value": "CrossSellCard"
+  crossSellCard: {
+    type: {
+      name: 'instanceOf',
+      value: 'CrossSellCard'
     },
-    "required": false,
-    "description": ""
-  },
-}
+    required: false,
+    description: ''
+  }
+};
 
 const ignored = {
-  "id": {
-    "type": {
-      "name": "string"
+  id: {
+    type: {
+      name: 'string'
     },
-    "required": false,
-    "description": IGNORE
-  },
-}
+    required: false,
+    description: IGNORE
+  }
+};
 
 const asset = {
-  "image": {
-    "type": {
-      "name": "object"
+  image: {
+    type: {
+      name: 'object'
     },
-    "required": false,
-    "description": ASSET
-  },
-}
+    required: false,
+    description: ASSET
+  }
+};
 
 const arrayOfAssets = {
-  "images": {
-    "type": {
-      "name": "arrayOf",
-      "value": {
-        "name": "object"
+  images: {
+    type: {
+      name: 'arrayOf',
+      value: {
+        name: 'object'
       }
     },
-    "required": false,
-    "description": ASSET
+    required: false,
+    description: ASSET
   }
-}
+};
 
 const childTypeRequired = {
   childTypeRequired: {
@@ -158,7 +167,7 @@ const validateAll = {
     required: false,
     description: ''
   }
-}
+};
 
 const validateAllRequired = {
   validateAllRequired: {
@@ -166,43 +175,43 @@ const validateAllRequired = {
     required: false,
     description: ''
   }
-}
+};
 
 const oneOf = {
-  "oneOf": {
-    "type": {
-      "name": "enum",
-      "value": [
+  oneOf: {
+    type: {
+      name: 'enum',
+      value: [
         {
-          "value": "'yes'",
-          "computed": false
+          value: "'yes'",
+          computed: false
         },
         {
-          "value": "'no'",
-          "computed": false
+          value: "'no'",
+          computed: false
         }
       ]
     },
-    "required": false,
-    "description": ""
+    required: false,
+    description: ''
   }
-}
+};
 
 describe('#buildObject', () => {
   test('short text field', () => {
     expect(buildObject(string, 'headerText')).toEqual({
       id: 'headerText',
       name: 'headerText',
-      type: 'Symbol',
-    })
+      type: 'Symbol'
+    });
   });
 
   test('short text field from node', () => {
     expect(buildObject(node, 'node')).toEqual({
       id: 'node',
       name: 'node',
-      type: 'Symbol',
-    })
+      type: 'Symbol'
+    });
   });
 
   test('short text field with predefined values', () => {
@@ -210,10 +219,8 @@ describe('#buildObject', () => {
       id: 'oneOf',
       name: 'oneOf',
       type: 'Symbol',
-      validations: [
-        { in: [ 'yes', 'no'] }
-      ]
-    })
+      validations: [{ in: ['yes', 'no'] }]
+    });
   });
 
   test('required text field', () => {
@@ -221,20 +228,20 @@ describe('#buildObject', () => {
       id: 'requiredText',
       name: 'requiredText',
       type: 'Symbol',
-      required: true,
-    })
+      required: true
+    });
   });
 
   test('function field', () => {
-    expect(buildObject(func, 'func')).toEqual(null)
+    expect(buildObject(func, 'func')).toEqual(null);
   });
 
   test('bool field', () => {
     expect(buildObject(bool, 'centered')).toEqual({
       id: 'centered',
       name: 'centered',
-      type: 'Boolean',
-    })
+      type: 'Boolean'
+    });
   });
 
   test('shape', () => {
@@ -242,18 +249,18 @@ describe('#buildObject', () => {
       id: 'shape',
       name: 'shape',
       type: 'Link',
-      linkType: 'Entry',
-    })
-  })
+      linkType: 'Entry'
+    });
+  });
 
   test('object', () => {
     expect(buildObject(object, 'object')).toEqual({
       id: 'object',
       name: 'object',
       type: 'Link',
-      linkType: 'Entry',
-    })
-  })
+      linkType: 'Entry'
+    });
+  });
 
   test('arrayOfAssets field', () => {
     expect(buildObject(arrayOfAssets, 'images')).toEqual({
@@ -262,9 +269,9 @@ describe('#buildObject', () => {
       type: 'Array',
       items: {
         type: 'Link',
-        linkType: 'Asset',
+        linkType: 'Asset'
       }
-    })
+    });
   });
 
   test('asset field', () => {
@@ -272,30 +279,28 @@ describe('#buildObject', () => {
       id: 'image',
       name: 'image',
       type: 'Link',
-      linkType: 'Asset',
-    })
+      linkType: 'Asset'
+    });
   });
 
   test('ignored field', () => {
-    expect(buildObject(ignored, 'id')).toEqual(null)
+    expect(buildObject(ignored, 'id')).toEqual(null);
   });
 
   test('instanceOf field', () => {
-    expect(buildObject(instanceOf, 'crossSellCard')).toEqual(null)
+    expect(buildObject(instanceOf, 'crossSellCard')).toEqual(null);
   });
 
-  describe('custom validators', () =>{
+  describe('custom validators', () => {
     test('childType', () => {
       expect(buildObject(childType, 'childType')).toEqual({
         id: 'childType',
         name: 'childType',
         type: 'Link',
         linkType: 'Entry',
-        validations: [
-          { linkContentType: [ 'CrossSellCard' ] }
-        ],
-      })
-    })
+        validations: [{ linkContentType: ['CrossSellCard'] }]
+      });
+    });
 
     test(`${CHILD_TYPE} required`, () => {
       expect(buildObject(childTypeRequired, 'childTypeRequired')).toEqual({
@@ -303,12 +308,10 @@ describe('#buildObject', () => {
         name: 'childTypeRequired',
         type: 'Link',
         linkType: 'Entry',
-        validations: [
-          { linkContentType: [ 'CrossSellCard' ] }
-        ],
-        required: true,
-      })
-    })
+        validations: [{ linkContentType: ['CrossSellCard'] }],
+        required: true
+      });
+    });
 
     test(CUSTOM_TYPE, () => {
       expect(buildObject(customType, 'customType')).toEqual({
@@ -316,11 +319,9 @@ describe('#buildObject', () => {
         name: 'customType',
         type: 'Link',
         linkType: 'Entry',
-        validations: [
-          { linkContentType: [ 'CrossSellCard' ] }
-        ],
-      })
-    })
+        validations: [{ linkContentType: ['CrossSellCard'] }]
+      });
+    });
 
     test(`${CUSTOM_TYPE} required`, () => {
       expect(buildObject(customTypeRequired, 'customTypeRequired')).toEqual({
@@ -328,12 +329,10 @@ describe('#buildObject', () => {
         name: 'customTypeRequired',
         type: 'Link',
         linkType: 'Entry',
-        validations: [
-          { linkContentType: [ 'CrossSellCard' ] }
-        ],
-        required: true,
-      })
-    })
+        validations: [{ linkContentType: ['CrossSellCard'] }],
+        required: true
+      });
+    });
 
     test(VALIDATE_ALL, () => {
       expect(buildObject(validateAll, 'validateAll')).toEqual({
@@ -343,12 +342,10 @@ describe('#buildObject', () => {
         items: {
           type: 'Link',
           linkType: 'Entry',
-          validations: [
-            { linkContentType: [ 'CrossSellCard' ] },
-          ],
+          validations: [{ linkContentType: ['CrossSellCard'] }]
         }
-      })
-    })
+      });
+    });
 
     test(`${VALIDATE_ALL} required`, () => {
       expect(buildObject(validateAllRequired, 'validateAllRequired')).toEqual({
@@ -358,33 +355,31 @@ describe('#buildObject', () => {
         items: {
           type: 'Link',
           linkType: 'Entry',
-          validations: [
-            { linkContentType: [ 'CrossSellCard' ] },
-          ],
+          validations: [{ linkContentType: ['CrossSellCard'] }]
         },
-        required: true,
-      })
-    })
-  })
+        required: true
+      });
+    });
+  });
 });
 
 const dummyComponent = {
-  "description": "",
-  "displayName": "CrossSellGroup",
-  "methods": [],
-  "props": {
+  description: '',
+  displayName: 'CrossSellGroup',
+  methods: [],
+  props: {
     ...string,
-    ...arrayOfAssets,
+    ...arrayOfAssets
   }
 };
 
-const dummyComponentWith_ = dummyComponent
+const dummyComponentWith_ = dummyComponent;
 dummyComponentWith_.props._id = {
-  "type": {
-    "name": "string"
+  type: {
+    name: 'string'
   },
-  "required": false,
-}
+  required: false
+};
 
 const expectedOutput = {
   content_type: dummyComponent.displayName,
@@ -394,7 +389,7 @@ const expectedOutput = {
     {
       id: 'headerText',
       name: 'headerText',
-      type: 'Symbol',
+      type: 'Symbol'
     },
     {
       id: 'images',
@@ -402,18 +397,18 @@ const expectedOutput = {
       type: 'Array',
       items: {
         type: 'Link',
-        linkType: 'Asset',
+        linkType: 'Asset'
       }
     }
   ]
-}
+};
 
 describe('#parseProps', () => {
   test('parse component', () => {
-    expect(parseProps(dummyComponent)).toEqual(expectedOutput)
-  })
+    expect(parseProps(dummyComponent)).toEqual(expectedOutput);
+  });
 
   test('ignore propName with _', () => {
-    expect(parseProps(dummyComponentWith_)).toEqual(expectedOutput)
-  })
-})
+    expect(parseProps(dummyComponentWith_)).toEqual(expectedOutput);
+  });
+});
