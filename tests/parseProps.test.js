@@ -130,7 +130,7 @@ const arrayOfAssets = {
 };
 
 const childTypeRequired = {
-  childTypeRequired: {
+  children: {
     type: { name: 'custom', raw: `${CHILD_TYPE}(CrossSellCard).${IS_REQUIRED}` },
     required: false,
     description: ''
@@ -138,7 +138,7 @@ const childTypeRequired = {
 };
 
 const childType = {
-  childType: {
+  children: {
     type: { name: 'custom', raw: `${CHILD_TYPE}(CrossSellCard)` },
     required: false,
     description: ''
@@ -293,22 +293,28 @@ describe('#buildObject', () => {
 
   describe('custom validators', () => {
     test('childType', () => {
-      expect(buildObject(childType, 'childType')).toEqual({
-        id: 'childType',
-        name: 'childType',
-        type: 'Link',
-        linkType: 'Entry',
-        validations: [{ linkContentType: ['CrossSellCard'] }]
+      expect(buildObject(childType, 'children')).toEqual({
+        id: 'children',
+        name: 'children',
+        type: 'Array',
+        items: {
+          type: 'Link',
+          linkType: 'Entry',
+          validations: [{ linkContentType: ['CrossSellCard'] }]
+        }
       });
     });
 
     test(`${CHILD_TYPE} required`, () => {
-      expect(buildObject(childTypeRequired, 'childTypeRequired')).toEqual({
-        id: 'childTypeRequired',
-        name: 'childTypeRequired',
-        type: 'Link',
-        linkType: 'Entry',
-        validations: [{ linkContentType: ['CrossSellCard'] }],
+      expect(buildObject(childTypeRequired, 'children')).toEqual({
+        id: 'children',
+        name: 'children',
+        type: 'Array',
+        items: {
+          type: 'Link',
+          linkType: 'Entry',
+          validations: [{ linkContentType: ['CrossSellCard'] }]
+        },
         required: true
       });
     });

@@ -2,7 +2,7 @@ const removeSpecialChars = require('./removeSpecialChars.js');
 const getReferenceComponent = require('./getReferenceComponent.js');
 const { VALIDATE_ALL, CHILD_TYPE, CUSTOM_TYPE, IS_REQUIRED, IGNORE, ASSET, ITEMS } = require('./constants.js');
 
-const caseObjectOrShape = description => {
+const createLink = description => {
   if (description.includes(ASSET)) {
     return {
       type: 'Link',
@@ -47,8 +47,13 @@ const mapTypeForFieldValues = (type, description = '') => {
         validations: [{ in: values }]
       };
     case 'custom':
-      if (type.raw.includes(CUSTOM_TYPE) || type.raw.includes(CHILD_TYPE)) {
-        if (description !== ITEMS && type.raw.includes(VALIDATE_ALL)) {
+      const children = type.raw.includes(CHILD_TYPE);
+      const propWithRef = type.raw.includes(CUSTOM_TYPE);
+      const arrayOfPropsWithRefs = type.raw.includes(VALIDATE_ALL);
+      const isItems = description === ITEMS;
+
+      if (propWithRef || children) {
+        if (!isItems && (arrayOfPropsWithRefs || children)) {
           return {
             type: 'Array',
             items: {},
@@ -57,19 +62,24 @@ const mapTypeForFieldValues = (type, description = '') => {
         }
 
         const reference = getReferenceComponent(type) || getReferenceComponent(type, CHILD_TYPE);
-        return {
-          type: 'Link',
-          linkType: 'Entry',
-          validations: [{ linkContentType: [reference] }],
-          ...(!type.raw.includes(VALIDATE_ALL) && type.raw.includes(IS_REQUIRED) && { required: true })
-        };
+
+        if (propWithRef || (isItems && children)) {
+          return {
+            type: 'Link',
+            linkType: 'Entry',
+            validations: [{ linkContentType: [reference] }],
+            ...(!(arrayOfPropsWithRefs || children) && type.raw.includes(IS_REQUIRED) && { required: true })
+          };
+        }
       }
 
       return null;
     case 'object':
-      return caseObjectOrShape(description);
+      return createLink(description);
     case 'shape':
-      return caseObjectOrShape(description);
+      return createLink(description);
+    case 'node':
+      return createLink(description);
     case 'arrayOf':
       return {
         type: 'Array',
@@ -106,12 +116,18 @@ module.exports = (props, propName) => {
     ...(required && { required: true })
   };
 
-  if (typeOfProp === 'arrayOf' || (typeOfProp === 'custom' && type.raw.includes(VALIDATE_ALL))) {
+  if (
+    typeOfProp === 'arrayOf' ||
+    (typeOfProp === 'custom' && type.raw.includes(VALIDATE_ALL)) ||
+    propName === 'children'
+  ) {
+    field.type = 'Array';
+
     if (typeOfProp === 'custom') {
       field.items = mapTypeForFieldValues(type, ITEMS);
     }
 
-    if (type.value && (type.value.name === 'object' || type.value.name === 'shape')) {
+    if (type.value && (type.value.name === 'object' || type.value.name === 'shape' || type.value.name === 'node')) {
       field.items = mapTypeForFieldValues(type.value, description);
     }
   }
