@@ -4,9 +4,9 @@ const { CUSTOM_TYPE } = require('./constants.js');
 module.exports = (type = {}, validatorFuncName = CUSTOM_TYPE) => {
   const splittingRef = `${validatorFuncName}(`;
 
-  if (type.raw && type.raw.includes(splittingRef)) {
-    const reference = type.raw.split(splittingRef)[1].split(')')[0];
-    return reference;
+  if(type.raw && type.raw.includes(splittingRef)) {
+    const reference = type.raw.split(splittingRef)[1].split(')')[0].split(',')[0];
+    return reference.replace(/["']/g, '');
   }
 
   return null;

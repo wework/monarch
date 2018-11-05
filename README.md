@@ -48,15 +48,27 @@ Read about [contentful content types](https://github.com/contentful/contentful-m
 | `instanceOf`              | `null`                        |                     | ignored by default             |
 | prop name starts with `_` | `null`                        |                     | ignored by default (ex. `_id`) |
 
-### Custom proptype validators:
+### Reference validators:
+We recommend using AirBnb's [`airbnb-prop-types`](https://github.com/airbnb/prop-types) for custom proptype validations, we support the following:
 
-We offer a few custom proptype validators to use in your code base, in order to reference specific content models (see an [example here](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx)).
+|Validator             | Contentful type     | Notes                       |
+|----------------------|---------------------|-----------------------------|
+|`childrenOfType()`    | `Link`              | to reference                |
+|`childrenOfType()`    | `Array` of `Link`s  | needs `@array` jsdoc flag   |
+|`componentWithName()` | `Link`              | to reference                |
+|`componentWithName()` | `Array` of `Link`s  | needs `@array` jsdoc flag   |
 
-| Validator          | Contentful type    | Notes        |
-| ------------------ | ------------------ | ------------ |
-| `childType()`      | `Link`             | to reference |
-| `customPropType()` | `Link`             | to reference |
-| `validateAll()`    | `Array` of `Link`s | to reference |
+used like so:
+```js
+ParentComponent.propTypes = {
+  children: childrenOfType(Component),
+  otherThing: componentWithName('OtherComponent'),
+  /** @array */
+  allThings: componentWithName('SingleComponent'),
+}
+```
+
+Open to adding support for more in the future, if necessary.
 
 ## Parsing a raw object
 

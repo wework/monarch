@@ -1,10 +1,11 @@
 module.exports = {
-  VALIDATE_ALL: 'validateAll',
-  CHILD_TYPE: 'childType',
-  CUSTOM_TYPE: 'customPropType',
+  CHILD_TYPE: 'childrenOfType',
+  CUSTOM_TYPE: 'componentWithName',
   IS_REQUIRED: 'isRequired',
 
   IGNORE: '@ignore-content-prop',
   ASSET: '@asset',
-  ITEMS: '@items'
+
+  ITEMS: '@items',
+  ARRAY: '@array',
 };

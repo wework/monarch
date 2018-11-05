@@ -1,6 +1,6 @@
 const removeSpecialChars = require('./removeSpecialChars.js');
 const getReferenceComponent = require('./getReferenceComponent.js');
-const { VALIDATE_ALL, CHILD_TYPE, CUSTOM_TYPE, IS_REQUIRED, IGNORE, ASSET, ITEMS } = require('./constants.js');
+const { VALIDATE_ALL, CHILD_TYPE, CUSTOM_TYPE, IS_REQUIRED, IGNORE, ARRAY, ASSET, ITEMS } = require('./constants.js');
 
 const caseObjectOrShape = description => {
   if (description.includes(ASSET)) {
@@ -47,8 +47,8 @@ const mapTypeForFieldValues = (type, description = '') => {
         validations: [{ in: values }]
       };
     case 'custom':
-      if (type.raw.includes(CUSTOM_TYPE) || type.raw.includes(CHILD_TYPE)) {
-        if (description !== ITEMS && type.raw.includes(VALIDATE_ALL)) {
+      if(type.raw.includes(CUSTOM_TYPE) || type.raw.includes(CHILD_TYPE)) {
+        if(description.includes(ARRAY)) {
           return {
             type: 'Array',
             items: {},
@@ -60,8 +60,10 @@ const mapTypeForFieldValues = (type, description = '') => {
         return {
           type: 'Link',
           linkType: 'Entry',
-          validations: [{ linkContentType: [reference] }],
-          ...(!type.raw.includes(VALIDATE_ALL) && type.raw.includes(IS_REQUIRED) && { required: true })
+          validations: [
+            { linkContentType: [ reference ] },
+          ],
+          ...(description !== ITEMS && type.raw.includes(IS_REQUIRED) && { required: true })
         };
       }
 
@@ -106,9 +108,9 @@ module.exports = (props, propName) => {
     ...(required && { required: true })
   };
 
-  if (typeOfProp === 'arrayOf' || (typeOfProp === 'custom' && type.raw.includes(VALIDATE_ALL))) {
-    if (typeOfProp === 'custom') {
-      field.items = mapTypeForFieldValues(type, ITEMS);
+  if(typeOfProp === 'arrayOf' || (typeOfProp === 'custom' && description.includes(ARRAY))) {
+    if(typeOfProp === 'custom') {
+      field.items = mapTypeForFieldValues(type, ITEMS)
     }
 
     if (type.value && (type.value.name === 'object' || type.value.name === 'shape')) {

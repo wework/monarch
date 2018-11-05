@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import CrossSellCard from './CrossSellCard.jsx';
-import { childType, customPropType, validateAll } from '../lib/validators';
+
+import { componentWithName, childrenOfType } from 'airbnb-prop-types';
 
 /**
  * Grid of Cross Sell Cards
@@ -32,9 +33,10 @@ CrossSellGroup.propTypes = {
     lg: PropTypes.number
   }),
   someFunction: PropTypes.func,
-  crossSellCards: validateAll(customPropType(CrossSellCard)).isRequired,
-  children: childType(CrossSellCard),
-  crossSellCard: customPropType(CrossSellCard),
+  /** @array */
+  crossSellCards: componentWithName('CrossSellCard').isRequired,
+  children: childrenOfType(CrossSellCard),
+  crossSellCard: componentWithName('CrossSellCard'),
   someShape: PropTypes.shape({
     key: PropTypes.string
   }),

@@ -3,6 +3,7 @@ const {
   buildObject,
   IGNORE,
   ASSET,
+  ARRAY,
   VALIDATE_ALL,
   CUSTOM_TYPE,
   CHILD_TYPE,
@@ -147,7 +148,7 @@ const childType = {
 
 const customTypeRequired = {
   customTypeRequired: {
-    type: { name: 'custom', raw: `${CUSTOM_TYPE}(CrossSellCard).${IS_REQUIRED}` },
+    type: { name: 'custom', raw: `${CUSTOM_TYPE}('CrossSellCard').${IS_REQUIRED}` },
     required: false,
     description: ''
   }
@@ -155,25 +156,25 @@ const customTypeRequired = {
 
 const customType = {
   customType: {
-    type: { name: 'custom', raw: `${CUSTOM_TYPE}(CrossSellCard)` },
+    type: { name: 'custom', raw: `${CUSTOM_TYPE}('CrossSellCard')` },
     required: false,
     description: ''
   }
 };
 
-const validateAll = {
-  validateAll: {
-    type: { name: 'custom', raw: `${VALIDATE_ALL}(${CUSTOM_TYPE}(CrossSellCard))` },
+const customTypeArray = {
+  customTypeArray: {
+    type: { name: 'custom', raw: `${CUSTOM_TYPE}('CrossSellCard', { stripHOCs: ['withDirection', 'withStyles'] })` },
     required: false,
-    description: ''
+    description: ARRAY
   }
 };
 
-const validateAllRequired = {
-  validateAllRequired: {
-    type: { name: 'custom', raw: `${VALIDATE_ALL}(${CUSTOM_TYPE}(CrossSellCard)).${IS_REQUIRED}` },
+const customTypeArrayRequired = {
+  customTypeArrayRequired: {
+    type: { name: 'custom', raw: `${CUSTOM_TYPE}('CrossSellCard').${IS_REQUIRED}` },
     required: false,
-    description: ''
+    description: ARRAY
   }
 };
 
@@ -334,10 +335,10 @@ describe('#buildObject', () => {
       });
     });
 
-    test(VALIDATE_ALL, () => {
-      expect(buildObject(validateAll, 'validateAll')).toEqual({
-        id: 'validateAll',
-        name: 'validateAll',
+    test(`${CUSTOM_TYPE} Array`, () => {
+      expect(buildObject(customTypeArray, 'customTypeArray')).toEqual({
+        id: 'customTypeArray',
+        name: 'customTypeArray',
         type: 'Array',
         items: {
           type: 'Link',
@@ -347,10 +348,10 @@ describe('#buildObject', () => {
       });
     });
 
-    test(`${VALIDATE_ALL} required`, () => {
-      expect(buildObject(validateAllRequired, 'validateAllRequired')).toEqual({
-        id: 'validateAllRequired',
-        name: 'validateAllRequired',
+    test(`${CUSTOM_TYPE} Array required`, () => {
+      expect(buildObject(customTypeArrayRequired, 'customTypeArrayRequired')).toEqual({
+        id: 'customTypeArrayRequired',
+        name: 'customTypeArrayRequired',
         type: 'Array',
         items: {
           type: 'Link',
