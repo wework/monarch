@@ -2,7 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import CrossSellCard from './CrossSellCard.jsx';
 
-import { componentWithName, childrenOfType } from 'airbnb-prop-types';
+import { componentWithName, childrenOfType } from 'airbnb-types';
+
+const OtherComponentWithoutPropTypes = props => <div {...props} />;
+
+/** @ignore-content-type */
+const OtherComponentToBeIgnored = ({ someProp, ...props }) => <div {...props} />;
+OtherComponentToBeIgnored.propTypes = {
+  someProp: PropTypes.node
+};
 
 /**
  * Grid of Cross Sell Cards
@@ -22,10 +30,10 @@ CrossSellGroup.propTypes = {
   headerText: PropTypes.string,
   bodyText: PropTypes.node,
   centered: PropTypes.bool,
-  /** @ignore-content-prop */
+  /** @ignore-content-type */
   ignoreThisProp: PropTypes.string,
   __id: PropTypes.string,
-  /** @ignore-content-prop */
+  /** @ignore-content-type */
   imageAspectRatio: PropTypes.shape({
     tiny: PropTypes.number,
     sm: PropTypes.number,

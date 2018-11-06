@@ -40,7 +40,7 @@ const mapTypeForFieldValues = (type, description = '') => {
         type: 'Number'
       };
     case 'enum':
-      const values = type.value.map(each => each.value.replace(/["']/g, ''));
+      const values = type.value.map(each => each.value && each.value.replace(/["']/g, ''));
 
       return {
         type: 'Symbol',

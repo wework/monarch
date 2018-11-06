@@ -3,9 +3,9 @@ module.exports = {
   CUSTOM_TYPE: 'componentWithName',
   IS_REQUIRED: 'isRequired',
 
-  IGNORE: '@ignore-content-prop',
+  IGNORE: '@ignore-content-type',
   ASSET: '@asset',
 
   ITEMS: '@items',
-  ARRAY: '@array',
+  ARRAY: '@array'
 };

@@ -374,13 +374,19 @@ const dummyComponent = {
   }
 };
 
-const dummyComponentWith_ = dummyComponent;
+const dummyComponentWith_ = { ...dummyComponent };
 dummyComponentWith_.props._id = {
   type: {
     name: 'string'
   },
   required: false
 };
+
+const dummyComponentToBeIgnored = { ...dummyComponent };
+dummyComponentToBeIgnored.description = IGNORE;
+
+const dummyComponentWithoutProps = { ...dummyComponent };
+dummyComponentWithoutProps.props = undefined;
 
 const expectedOutput = {
   content_type: dummyComponent.displayName,
@@ -411,5 +417,17 @@ describe('#parseProps', () => {
 
   test('ignore propName with _', () => {
     expect(parseProps(dummyComponentWith_)).toEqual(expectedOutput);
+  });
+
+  test(`ignore components with ${IGNORE} jsdoc`, () => {
+    expect(parseProps(dummyComponentToBeIgnored)).toEqual({
+      error: `ignored component: ${dummyComponent.displayName} because it is using ${IGNORE} flag`
+    });
+  });
+
+  test('ignore components without proptypes defined', () => {
+    expect(parseProps(dummyComponentWithoutProps)).toEqual({
+      error: `ignored component: ${dummyComponent.displayName} because it is without proptypes defined`
+    });
   });
 });

@@ -1,1 +1,1 @@
-module.exports = string => string.replace(/[`'\n]/g, '');
+module.exports = string => string && string.replace(/[`'\n]/g, '');

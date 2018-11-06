@@ -26,7 +26,7 @@ Check out migrations directory and see that the file has been created. If you ru
 
 For adding a content model description, use jsdoc comments above the component definition.
 
-For ignoring proptypes, use jsdoc comment flag [`@ignore-content-prop`](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx#L25)
+For ignoring proptypes or entire components, use jsdoc comment flag `@ignore-content-type`. [See example here](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroupjsx)
 
 Read about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field).
 
@@ -49,23 +49,25 @@ Read about [contentful content types](https://github.com/contentful/contentful-m
 | prop name starts with `_` | `null`                        |                     | ignored by default (ex. `_id`) |
 
 ### Reference validators:
+
 We recommend using AirBnb's [`airbnb-prop-types`](https://github.com/airbnb/prop-types) for custom proptype validations, we support the following:
 
-|Validator             | Contentful type     | Notes                       |
-|----------------------|---------------------|-----------------------------|
-|`childrenOfType()`    | `Link`              | to reference                |
-|`childrenOfType()`    | `Array` of `Link`s  | needs `@array` jsdoc flag   |
-|`componentWithName()` | `Link`              | to reference                |
-|`componentWithName()` | `Array` of `Link`s  | needs `@array` jsdoc flag   |
+| Validator             | Contentful type    | Notes                     |
+| --------------------- | ------------------ | ------------------------- |
+| `childrenOfType()`    | `Link`             | to reference              |
+| `childrenOfType()`    | `Array` of `Link`s | needs `@array` jsdoc flag |
+| `componentWithName()` | `Link`             | to reference              |
+| `componentWithName()` | `Array` of `Link`s | needs `@array` jsdoc flag |
 
 used like so:
+
 ```js
 ParentComponent.propTypes = {
   children: childrenOfType(Component),
   otherThing: componentWithName('OtherComponent'),
   /** @array */
-  allThings: componentWithName('SingleComponent'),
-}
+  allThings: componentWithName('SingleComponent')
+};
 ```
 
 Open to adding support for more in the future, if necessary.
