@@ -70,8 +70,6 @@ ParentComponent.propTypes = {
 };
 ```
 
-Open to adding support for more in the future, if necessary.
-
 ## Parsing a raw object
 
 If you'd rather translate a raw object ([example of structure here](https://github.com/wework/monarch/blob/master/example/dummy_data/index.js)) into a migration file, run:
@@ -97,4 +95,3 @@ Contributions are always welcome, no matter how large or small. Before contribut
 ## The future
 
 - support other front-end frameworks
-- export custom validators
