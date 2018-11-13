@@ -12,7 +12,7 @@ These docs reference the most current version. Since it is still in an alpha rel
 npm install -g @wework/monarch@next
 ```
 
-Note: make sure [contentful-migrate](https://github.com/deluan/contentful-migrate) and [react-docgen](https://github.com/reactjs/react-docgen) are also installed globally. (This will be addressed in a later release)
+Note: this tool uses the libraries [contentful-migrate](https://github.com/deluan/contentful-migrate) and [react-docgen](https://github.com/reactjs/react-docgen), to assist in parsing the React components and creating the initial migration directory
 
 ## Parsing a React Component
 
