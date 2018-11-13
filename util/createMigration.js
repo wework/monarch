@@ -13,6 +13,7 @@ module.exports.up = function(migration) {
     .createField('contentTitle')
     .name('Content Title')
     .type('Symbol')
+  ${component.content_type}.displayField('contentTitle')
   ${createFields(component)}
 }
 

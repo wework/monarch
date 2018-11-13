@@ -126,6 +126,7 @@ describe('#createMigration', () => {
           .createField('contentTitle')
           .name('ContentTitle')
           .type('Symbol')
+        ${dummyComponent.content_type}.displayField('contentTitle')
         ${dummyComponent.content_type}
           .createField('${dummyField.id}')
           .name('${dummyField.name}')
