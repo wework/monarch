@@ -92,6 +92,7 @@ Once you have the files generated, you are ready to push them up to Contentful!
 
 Contributions are always welcome, no matter how large or small. Before contributing, please read the [code of conduct](CODE_OF_CONDUCT.md).
 
-## The future
+## Troubleshooting
 
-- support other front-end frameworks
+- error: `No suitable component definition found.` 
+  - this the component is `export`ing a `connect`ed component - if you `export` the component itself, this should fix this error (see https://github.com/reactjs/react-docgen/issues/288)
