@@ -26,7 +26,7 @@ Check out migrations directory and see that the file has been created. If you ru
 
 For adding a content model description, use jsdoc comments above the component definition.
 
-For ignoring proptypes or entire components, use jsdoc comment flag `@ignore-content-type`. [See example here](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroupjsx)
+For ignoring proptypes or entire components, use jsdoc comment flag `@ignore-content-type`. [See example here](https://github.com/wework/monarch/blob/master/example/components/CrossSellGroup.jsx)
 
 Read about [contentful content types](https://github.com/contentful/contentful-migration#createfieldid-opts--field).
 
